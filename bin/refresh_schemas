@@ -1,0 +1,94 @@
+#!/usr/bin/env ruby
+
+require 'net/http'
+require 'json'
+
+api_docs_uri = URI('https://api.notonthehighstreet.com/doc-1.0/api-docs.json')
+
+schemas_dir = File.expand_path('../schemas', __dir__)
+
+def fetch_json(uri)
+  res = Net::HTTP.start(uri.hostname,
+                        uri.port,
+                        use_ssl: uri.scheme == 'https') do |http|
+    http.request(Net::HTTP::Get.new(uri))
+  end
+
+  res.error! unless res.is_a?(Net::HTTPSuccess)
+
+  JSON.parse(res.body, symbolize_names: true)
+end
+
+# Fix original schema invalid directives
+def apply_ammendments(api_schema)
+  api_schema.fetch(:apis).each do |endpoint|
+    endpoint.fetch(:operations).each do |method|
+      method[:nickname] = method[:nickname].sub('Api::V1::', '') unless method[:nickname].nil?
+
+      token_parameter = method[:parameters].detect { |p| p[:name] == 'token' }
+
+      if token_parameter
+        method[:authorizations] ||= { token: [] }
+        method[:parameters].delete(token_parameter)
+      end
+
+      method[:parameters].each do |p|
+        p[:required] = true if p[:required] == 'required'
+
+        case p[:type]
+        when 'date'
+          p[:type]    = 'string'
+          p[:format]  = 'date'
+        when 'datetime'
+          p[:type]    = 'string'
+          p[:format]  = 'date-time'
+        end
+
+        p[:name] = :payload if p[:paramType] == 'body' && p[:name] == ''
+      end
+    end
+  end
+
+  api_schema.fetch(:models).values.each do |model|
+    model.fetch(:properties).values.each do |p|
+      p[:type] = p[:items][:'$ref'] if p[:type] == 'complex'
+    end
+  end
+end
+
+main_schema = fetch_json(api_docs_uri)
+
+main_schema.fetch(:apis).each do |api|
+  api_path = api.fetch(:path).sub('.{format}', '.json')
+
+  api_uri = api_docs_uri.dup
+
+  api_uri.path = ['/', api_path].join
+
+  api[:path] = File.basename(api_path) # making path relative to schema file
+
+  File.open [schemas_dir, File.basename(api_uri.path)].join('/'), 'w' do |io|
+    api_schema = fetch_json(api_uri)
+
+    apply_ammendments(api_schema) unless ARGV.include?('--skip-amendments')
+
+    io.write JSON.pretty_generate(api_schema)
+  end
+end
+
+main_schema[:info] ||= {
+  title: 'Noths',
+  description: 'www.notonthehighstreet.com API client'
+}
+
+main_schema[:authorizations] ||= {
+  token: {
+    'type':     'apiKey',
+    'passAs':   'query',
+    'keyname':  'token'
+  }
+}
+
+File.open [schemas_dir, File.basename(api_docs_uri.path)].join('/'), 'w' do |io|
+  io.write JSON.pretty_generate(main_schema)
+end

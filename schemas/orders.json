@@ -1,0 +1,2013 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "orders",
+  "apis": [
+    {
+      "path": "/api/v1/orders/{id}/accept",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "estimated_delivery_date",
+              "type": "string",
+              "description": "'yyyy-mm-dd'",
+              "required": true,
+              "format": "date"
+            },
+            {
+              "paramType": "form",
+              "name": "estimated_dispatch_at",
+              "type": "string",
+              "description": "'yyyy-mm-dd'",
+              "required": true,
+              "format": "date"
+            },
+            {
+              "paramType": "form",
+              "name": "confirmation_note",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "summary": "Accept an order",
+          "notes": "          Accept an order that is in the placed state.\n          Note: In rare instances orders may not transition to the 'accepted' state\n          immediately.\n",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#acceptance",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/{id}/decline",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "decline_reason",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Decline an order",
+          "notes": "Declines an order that is in the placed state",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#decline",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/{id}/dispatch",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "estimated_delivery_date",
+              "type": "string",
+              "description": "'yyyy-mm-dd'",
+              "required": true,
+              "format": "date"
+            },
+            {
+              "paramType": "form",
+              "name": "resolve_enquiry",
+              "type": "boolean",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "tracking_number",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "parcel_tracking_url",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "ignore_unresolved_enquiries",
+              "type": "boolean",
+              "description": "Defaults to false",
+              "required": false
+            }
+          ],
+          "summary": "Dispatch an order",
+          "notes": "Dispatches an order that is in an accepted state and has also had its dispatch note printed",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#dispatch_order",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/{id}/dispatch_note",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "force_type",
+              "type": "string",
+              "description": "Type of document",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "regular"
+                ]
+              }
+            }
+          ],
+          "summary": "Generate a dispatch note pdf or gift note pdf.",
+          "notes": "Force the kind of document by passing the force_type parameter. A gift note can only be printed for an order that is a gift, which will be the default behaviour.<p/>Here is an example of how to obtain a pdf using curl:\n      <pre>curl -XPOST [URL] > document.pdf</pre>",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Returns a PDF"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Orders#dispatch_note",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/{id}/order_details",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            }
+          ],
+          "summary": "Generate an order details pdf",
+          "notes": "Here is an example of how to obtain a pdf using curl:\n      <pre>curl -XPOST [URL] > document.pdf</pre>",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Returns a PDF"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Orders#order_details",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/{id}/invoice",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "type",
+              "type": "string",
+              "description": "Type of invoice",
+              "required": true,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "vat_invoice",
+                  "additional_payment"
+                ]
+              }
+            }
+          ],
+          "summary": "Generate a vat invoice pdf.",
+          "notes": "<p>Invoices are currently only applicable for the UK site</p>Here is an example of how to obtain a pdf using curl:\n      <pre>curl -XPOST [URL] > document.pdf</pre>",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Returns a PDF"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Orders#invoice",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/accept",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "body",
+              "name": "payload",
+              "type": "array",
+              "description": null,
+              "required": true,
+              "items": {
+                "$ref": "AcceptanceBulkModel"
+              }
+            }
+          ],
+          "summary": "Accept multiple orders",
+          "notes": "Returns an array of hashes containing order ids and status codes. A status code of 200 indicates that the order was eligible to be accepted and is expected to be processed successfully. This is not a guarantee that the order will be accepted. Processing acceptance is not instantaneous and may take some time while funds are captured.     Example response:\n    <pre>\n    [\n      {\n        \"id\": 12,\n        \"status\": 200,\n        \"errors\": []\n      },\n      {\n        \"id\": 22,\n        \"status\": 404,\n        \"errors\": [\n          {\n            \"code\": \"RESOURCE_NOT_FOUND\",\n            \"title\": \"Couldn't find the requested resource\"\n          }\n        ]\n      }\n    ]\n    </pre>\n",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 207,
+              "responseModel": null,
+              "message": "Partial success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Also includes not found"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#acceptance_bulk",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/decline",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "body",
+              "name": "payload",
+              "type": "array",
+              "description": null,
+              "required": true,
+              "items": {
+                "$ref": "DeclineBulkModel"
+              }
+            }
+          ],
+          "summary": "Decline multiple orders",
+          "notes": "Returns an array of hashes containing order ids and status codes. A status code of 200\n      indicates a successful update whereas a code of 400 indicates failure.     Example response:\n    <pre>\n    [\n      {\n        \"id\": 12,\n        \"status\": 200,\n        \"errors\": []\n      },\n      {\n        \"id\": 22,\n        \"status\": 404,\n        \"errors\": [\n          {\n            \"code\": \"RESOURCE_NOT_FOUND\",\n            \"title\": \"Couldn't find the requested resource\"\n          }\n        ]\n      }\n    ]\n    </pre>\n",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 207,
+              "responseModel": null,
+              "message": "Partial success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Also includes not found"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#decline_bulk",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/dispatch",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "ignore_unresolved_enquiries",
+              "type": "boolean",
+              "description": "Defaults to false",
+              "required": false
+            },
+            {
+              "paramType": "body",
+              "name": "payload",
+              "type": "array",
+              "description": null,
+              "required": true,
+              "items": {
+                "$ref": "DispatchBulkModel"
+              }
+            }
+          ],
+          "summary": "Dispatch multiple orders",
+          "notes": "Returns an array of hashes containing order ids and status codes. A status code of 200\n      indicates a successful update whereas a code of 400 indicates failure.     Example response:\n    <pre>\n    [\n      {\n        \"id\": 12,\n        \"status\": 200,\n        \"errors\": []\n      },\n      {\n        \"id\": 22,\n        \"status\": 404,\n        \"errors\": [\n          {\n            \"code\": \"RESOURCE_NOT_FOUND\",\n            \"title\": \"Couldn't find the requested resource\"\n          }\n        ]\n      }\n    ]\n    </pre>\n",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 207,
+              "responseModel": null,
+              "message": "Partial success"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Also includes not found"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#dispatch_orders_bulk",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/dispatch_notes",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "body",
+              "name": "payload",
+              "type": "array",
+              "description": null,
+              "required": true,
+              "items": {
+                "$ref": "DispatchNotesBulkModel"
+              }
+            }
+          ],
+          "summary": "Generate pdf with dispatch note for each order",
+          "notes": "<p/> Here is an example of how to obtain a pdf using curl:\n      <pre>curl -H \"Content-Type: application/json\" -d '[{\"id\": 123}, {\"id\": 456}]' -XPOST [URL] > document.pdf</pre><p/>\n      Ensure that the Content-Type header is set to \"Content-Type: application/json\".<p/>",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Returns a PDF"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#dispatch_notes_bulk",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/order_details",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "body",
+              "name": "payload",
+              "type": "array",
+              "description": null,
+              "required": true,
+              "items": {
+                "$ref": "OrderDetailsBulkModel"
+              }
+            }
+          ],
+          "summary": "Generate pdf with order details for each order",
+          "notes": "<p/> Here is an example of how to obtain a pdf using curl:\n      <pre>curl -H \"Content-Type: application/json\" -d '[{\"id\": 123}, {\"id\": 456}]' -XPOST [URL] > document.pdf</pre><p/>\n      Ensure that the Content-Type header is set to \"Content-Type: application/json\".<p/>",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Returns a PDF"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "post",
+          "nickname": "Orders#order_details_bulk",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "customer_expected_delivery_date[from]",
+              "type": "string",
+              "description": "Earliest customer_expected_delivery_date datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "customer_expected_delivery_date[to]",
+              "type": "string",
+              "description": "Latest customer_expected_delivery_date datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "delivery_service_code",
+              "type": "string",
+              "description": "Delivery service code",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "EXPRESS_12",
+                  "EXPRESS_24",
+                  "EXPRESS_48",
+                  "FREE",
+                  "SATURDAY",
+                  "STANDARD",
+                  "STANDARD_COURIER"
+                ]
+              }
+            },
+            {
+              "paramType": "query",
+              "name": "delivery_zone_ids",
+              "type": "string",
+              "description": "List of delivery zone ids",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "dir",
+              "type": "string",
+              "description": "Direction (defaults to desc)",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            },
+            {
+              "paramType": "query",
+              "name": "dispatch_note_viewed",
+              "type": "boolean",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "enquiry_state",
+              "type": "string",
+              "description": "          Enquiry state where `unresolved` includes `opened`, `acknowledged` and `overdue`\n",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "opened",
+                  "acknowledged",
+                  "overdue",
+                  "resolved",
+                  "unresolved"
+                ]
+              }
+            },
+            {
+              "paramType": "query",
+              "name": "estimated_delivery_date[from]",
+              "type": "string",
+              "description": "Earliest estimated_delivery_date datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "estimated_delivery_date[to]",
+              "type": "string",
+              "description": "Latest estimated_delivery_date datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "estimated_dispatch_at[from]",
+              "type": "string",
+              "description": "Earliest estimated_dispatch_at datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "estimated_dispatch_at[to]",
+              "type": "string",
+              "description": "Latest estimated_dispatch_at datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "updated_at[from]",
+              "type": "string",
+              "description": "Earliest updated_at datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'. Is not changed on nested resource updates eg 'Enquiry'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "updated_at[to]",
+              "type": "string",
+              "description": "Latest updated_at datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'. Is not changed on nested resource updates eg 'Enquiry'",
+              "required": false,
+              "format": "date-time"
+            },
+            {
+              "paramType": "query",
+              "name": "gift",
+              "type": "boolean",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "unresolved_enquiry",
+              "type": "boolean",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "ids",
+              "type": "string",
+              "description": "List of order ids",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "offset",
+              "type": "integer",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "per_page",
+              "type": "integer",
+              "description": "Defaults to 30, maximum is 250",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "product_ids",
+              "type": "string",
+              "description": "List of product ids",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "query",
+              "type": "string",
+              "description": "Matches your query to information related to your orders",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "repeat_customer",
+              "type": "boolean",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "sort",
+              "type": "string",
+              "description": "Defaults to placed_at",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "accepted_at",
+                  "confirm_by",
+                  "customer_email",
+                  "customer_expected_delivery_date",
+                  "customer_name",
+                  "declined_at",
+                  "delivery_recipient_name",
+                  "delivery_service_code",
+                  "dispatch_note_viewed",
+                  "dispatched_at",
+                  "enquiry_state",
+                  "estimated_delivery_date",
+                  "estimated_dispatch_at",
+                  "expired_at",
+                  "gift",
+                  "international",
+                  "listing_total_gross_value",
+                  "partner_name",
+                  "partner_shortcode",
+                  "placed_at",
+                  "state"
+                ]
+              }
+            },
+            {
+              "paramType": "query",
+              "name": "state",
+              "type": "string",
+              "description": "State",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "placed",
+                  "expired",
+                  "accepted",
+                  "declined",
+                  "dispatched",
+                  "refunded",
+                  "archived"
+                ]
+              }
+            }
+          ],
+          "summary": "Fetch orders",
+          "notes": "Lists orders descending by placed at time by default.<p/>If you just want a count, use per_page=0 and offset=0 .",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "OrderIndex",
+              "message": "Ok"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            }
+          ],
+          "method": "get",
+          "nickname": "Orders#index",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/orders/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order Id",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "include",
+              "type": "string",
+              "description": "        Comma separated list of nodes to expand. Currently the available values are:\n        <br /><b style=\"margin-left: 10px\">financials</b>\n        <p style=\"margin-left: 20px\">\n          Additional financial data about this order, eg: commission and discount amounts.\n        </p>\n",
+              "required": false
+            }
+          ],
+          "summary": "Fetch a single Order",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "Order",
+              "message": "Ok"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "get",
+          "nickname": "Orders#show",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "models": {
+    "Order": {
+      "id": "Order",
+      "required": [
+        "id",
+        "state",
+        "confirm_by",
+        "estimated_dispatch_at",
+        "placed_at",
+        "expired_at",
+        "declined_at",
+        "accepted_at",
+        "dispatched_at",
+        "repeat_customer",
+        "customer_expected_delivery_date",
+        "number",
+        "dispatch_note_viewed",
+        "express",
+        "partner_name",
+        "delivery_recipient_name",
+        "delivery_recipient_first_name",
+        "delivery_recipient_last_name",
+        "international",
+        "dispatch_overdue",
+        "gift",
+        "gift_message",
+        "gift_wrap",
+        "gift_receipt",
+        "delivery_note",
+        "has_enquiry",
+        "estimated_delivery_date",
+        "financials",
+        "promotion_discount",
+        "promotion_present",
+        "remaining_refund_amount",
+        "refund_total",
+        "extra_refund_amount",
+        "user",
+        "delivery_address",
+        "delivery_zone",
+        "delivery_service",
+        "order_detail",
+        "order_total",
+        "delivery_total",
+        "enquiry",
+        "items",
+        "links"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        },
+        "state": {
+          "type": "string",
+          "description": null
+        },
+        "confirm_by": {
+          "type": "date",
+          "description": null
+        },
+        "estimated_dispatch_at": {
+          "type": "date",
+          "description": null
+        },
+        "placed_at": {
+          "type": "date",
+          "description": null
+        },
+        "expired_at": {
+          "type": "date",
+          "description": null
+        },
+        "declined_at": {
+          "type": "date",
+          "description": null
+        },
+        "accepted_at": {
+          "type": "date",
+          "description": null
+        },
+        "dispatched_at": {
+          "type": "date",
+          "description": null
+        },
+        "archived_at": {
+          "type": "date",
+          "description": null
+        },
+        "repeat_customer": {
+          "type": "boolean",
+          "description": null
+        },
+        "customer_expected_delivery_date": {
+          "type": "date",
+          "description": null
+        },
+        "number": {
+          "type": "string",
+          "description": null
+        },
+        "dispatch_note_viewed": {
+          "type": "boolean",
+          "description": null
+        },
+        "express": {
+          "type": "boolean",
+          "description": null
+        },
+        "partner_name": {
+          "type": "string",
+          "description": null
+        },
+        "delivery_recipient_name": {
+          "type": "string",
+          "description": null
+        },
+        "delivery_recipient_first_name": {
+          "type": "string",
+          "description": null
+        },
+        "delivery_recipient_last_name": {
+          "type": "string",
+          "description": null
+        },
+        "international": {
+          "type": "boolean",
+          "description": null
+        },
+        "dispatch_overdue": {
+          "type": "boolean",
+          "description": null
+        },
+        "gift": {
+          "type": "boolean",
+          "description": null
+        },
+        "gift_message": {
+          "type": "string",
+          "description": null
+        },
+        "gift_wrap": {
+          "type": "boolean",
+          "description": null
+        },
+        "gift_receipt": {
+          "type": "boolean",
+          "description": null
+        },
+        "delivery_note": {
+          "type": "string",
+          "description": null
+        },
+        "has_enquiry": {
+          "type": "boolean",
+          "description": null
+        },
+        "estimated_delivery_date": {
+          "type": "date",
+          "description": null
+        },
+        "rebate_qualified": {
+          "type": "boolean",
+          "description": "null in sites where rebates are not offered"
+        },
+        "rebate_achieved": {
+          "type": "boolean",
+          "description": "null in sites where rebates are not offered"
+        },
+        "financials": {
+          "type": "Financials",
+          "description": null,
+          "items": {
+            "$ref": "Financials"
+          }
+        },
+        "promotion_discount": {
+          "type": "integer",
+          "description": null
+        },
+        "promotion_present": {
+          "type": "boolean",
+          "description": null
+        },
+        "remaining_refund_amount": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "refund_total": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "extra_refund_amount": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "user": {
+          "type": "User",
+          "description": null,
+          "items": {
+            "$ref": "User"
+          }
+        },
+        "delivery_address": {
+          "type": "DeliveryAddress",
+          "description": null,
+          "items": {
+            "$ref": "DeliveryAddress"
+          }
+        },
+        "delivery_zone": {
+          "type": "DeliveryZone",
+          "description": null,
+          "items": {
+            "$ref": "DeliveryZone"
+          }
+        },
+        "delivery_service": {
+          "type": "DeliveryService",
+          "description": null,
+          "items": {
+            "$ref": "DeliveryService"
+          }
+        },
+        "order_detail": {
+          "type": "OrderDetail",
+          "description": null,
+          "items": {
+            "$ref": "OrderDetail"
+          }
+        },
+        "order_total": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "delivery_total": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "enquiry": {
+          "type": "Enquiry",
+          "description": null,
+          "items": {
+            "$ref": "Enquiry"
+          }
+        },
+        "items": {
+          "type": "Item",
+          "description": null,
+          "items": {
+            "$ref": "Item"
+          }
+        },
+        "links": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "Link"
+          }
+        }
+      }
+    },
+    "DeliveryAddress": {
+      "id": "DeliveryAddress",
+      "required": [
+        "address1",
+        "address2",
+        "town",
+        "post_code",
+        "country",
+        "county"
+      ],
+      "properties": {
+        "address1": {
+          "type": "string",
+          "description": null
+        },
+        "address2": {
+          "type": "string",
+          "description": null
+        },
+        "town": {
+          "type": "string",
+          "description": null
+        },
+        "post_code": {
+          "type": "string",
+          "description": null
+        },
+        "country": {
+          "type": "string",
+          "description": null
+        },
+        "county": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "ManualPayment": {
+      "id": "ManualPayment",
+      "required": [
+        "id",
+        "payment_reason",
+        "commission",
+        "amount"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        },
+        "payment_reason": {
+          "type": "string",
+          "description": null
+        },
+        "commission": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "amount": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        }
+      }
+    },
+    "Financials": {
+      "id": "Financials",
+      "required": [
+        "commission",
+        "delivery_commission",
+        "items_commission",
+        "listing_delivery",
+        "listing_discount",
+        "listing_items",
+        "listing_subtotal",
+        "listing_total",
+        "manual_payment_total",
+        "purchase_delivery",
+        "purchase_discount",
+        "purchase_items",
+        "purchase_subtotal",
+        "purchase_total",
+        "partner_total",
+        "listing_items_discounted",
+        "listing_total_with_discount",
+        "manual_payments"
+      ],
+      "properties": {
+        "commission": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "delivery_commission": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "items_commission": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_delivery": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_discount": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_items": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_subtotal": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_total": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "manual_payment_total": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "purchase_delivery": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "purchase_discount": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "purchase_items": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "purchase_subtotal": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "purchase_total": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "partner_total": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_items_discounted": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_total_with_discount": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "manual_payments": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "ManualPayment"
+          }
+        }
+      }
+    },
+    "FinancialsDetails": {
+      "id": "FinancialsDetails",
+      "required": [
+        "vat",
+        "net",
+        "gross"
+      ],
+      "properties": {
+        "vat": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "net": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "gross": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        }
+      }
+    },
+    "DeliveryZone": {
+      "id": "DeliveryZone",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        },
+        "name": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "DeliveryService": {
+      "id": "DeliveryService",
+      "required": [
+        "name",
+        "code"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": null
+        },
+        "code": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "OrderDetail": {
+      "id": "OrderDetail",
+      "required": [
+        "tracking_number",
+        "parcel_tracking_url"
+      ],
+      "properties": {
+        "tracking_number": {
+          "type": "string",
+          "description": null
+        },
+        "parcel_tracking_url": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "Currency": {
+      "id": "Currency",
+      "required": [
+        "subunit_to_unit",
+        "symbol",
+        "html_entity",
+        "iso_code"
+      ],
+      "properties": {
+        "subunit_to_unit": {
+          "type": "integer",
+          "description": null
+        },
+        "symbol": {
+          "type": "string",
+          "description": null
+        },
+        "html_entity": {
+          "type": "string",
+          "description": null
+        },
+        "iso_code": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "Money": {
+      "id": "Money",
+      "required": [
+        "cents",
+        "currency"
+      ],
+      "properties": {
+        "cents": {
+          "type": "integer",
+          "description": null
+        },
+        "currency": {
+          "type": "Currency",
+          "description": null,
+          "items": {
+            "$ref": "Currency"
+          }
+        }
+      }
+    },
+    "Enquiry": {
+      "id": "Enquiry",
+      "required": [
+        "id",
+        "state",
+        "messages"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        },
+        "state": {
+          "type": "string",
+          "description": null
+        },
+        "messages": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "EnquiryMessage"
+          }
+        }
+      }
+    },
+    "EnquiryMessage": {
+      "id": "EnquiryMessage",
+      "required": [
+        "body"
+      ],
+      "properties": {
+        "body": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "Item": {
+      "id": "Item",
+      "required": [
+        "id",
+        "item_title",
+        "quantity",
+        "commission_vat_rate",
+        "listing_total_gross",
+        "product",
+        "options",
+        "financials"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        },
+        "item_title": {
+          "type": "string",
+          "description": null
+        },
+        "quantity": {
+          "type": "integer",
+          "description": null
+        },
+        "commission_vat_rate": {
+          "type": "string",
+          "description": null
+        },
+        "listing_total_gross": {
+          "type": "Money",
+          "description": null,
+          "items": {
+            "$ref": "Money"
+          }
+        },
+        "product": {
+          "type": "Product",
+          "description": null,
+          "items": {
+            "$ref": "Product"
+          }
+        },
+        "options": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "ProductOption"
+          }
+        },
+        "financials": {
+          "type": "ItemFinancials",
+          "description": null,
+          "items": {
+            "$ref": "ItemFinancials"
+          }
+        }
+      }
+    },
+    "ItemFinancials": {
+      "id": "ItemFinancials",
+      "required": [
+        "commission_rate",
+        "commission_vat_rate",
+        "commission",
+        "listing_price",
+        "listing_total",
+        "listing_discounted_price"
+      ],
+      "properties": {
+        "commission_rate": {
+          "type": "integer",
+          "description": null
+        },
+        "commission_vat_rate": {
+          "type": "integer",
+          "description": null
+        },
+        "commission": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_price": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_total": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        },
+        "listing_discounted_price": {
+          "type": "FinancialsDetails",
+          "description": null,
+          "items": {
+            "$ref": "FinancialsDetails"
+          }
+        }
+      }
+    },
+    "ProductOption": {
+      "id": "ProductOption",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": null
+        },
+        "value": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "Product": {
+      "id": "Product",
+      "required": [
+        "id",
+        "sku",
+        "title",
+        "personalisable",
+        "image"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        },
+        "sku": {
+          "type": "string",
+          "description": null
+        },
+        "title": {
+          "type": "string",
+          "description": null
+        },
+        "personalisable": {
+          "type": "boolean",
+          "description": null
+        },
+        "image": {
+          "type": "ImageUrl",
+          "description": null,
+          "items": {
+            "$ref": "ImageUrl"
+          }
+        }
+      }
+    },
+    "ImageUrl": {
+      "id": "ImageUrl",
+      "required": [
+        "micro_url",
+        "mini_url",
+        "thumb_url",
+        "medium_url",
+        "preview_url",
+        "normal_url"
+      ],
+      "properties": {
+        "micro_url": {
+          "type": "string",
+          "description": null
+        },
+        "mini_url": {
+          "type": "string",
+          "description": null
+        },
+        "thumb_url": {
+          "type": "string",
+          "description": null
+        },
+        "medium_url": {
+          "type": "string",
+          "description": null
+        },
+        "preview_url": {
+          "type": "string",
+          "description": null
+        },
+        "normal_url": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "OrderIndex": {
+      "id": "OrderIndex",
+      "required": [
+        "query",
+        "data",
+        "links"
+      ],
+      "properties": {
+        "query": {
+          "type": "SearchResultMeta",
+          "description": null,
+          "items": {
+            "$ref": "SearchResultMeta"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "Order"
+          }
+        },
+        "links": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "Link"
+          }
+        }
+      }
+    },
+    "SearchResultMeta": {
+      "id": "SearchResultMeta",
+      "required": [
+        "results",
+        "total"
+      ],
+      "properties": {
+        "results": {
+          "type": "integer",
+          "description": null
+        },
+        "total": {
+          "type": "integer",
+          "description": null
+        }
+      }
+    },
+    "Link": {
+      "id": "Link",
+      "required": [
+        "rel",
+        "method",
+        "href"
+      ],
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "a unique reference for an action or relation on this object"
+        },
+        "method": {
+          "type": "string",
+          "description": null
+        },
+        "href": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "User": {
+      "id": "User",
+      "required": [
+        "name",
+        "telephone",
+        "telephone_country_code"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": null
+        },
+        "telephone": {
+          "type": "string",
+          "description": null
+        },
+        "telephone_country_code": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "AcceptanceBulkModel": {
+      "id": "AcceptanceBulkModel",
+      "required": [
+        "id",
+        "estimated_delivery_date",
+        "estimated_dispatch_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Order Id"
+        },
+        "estimated_delivery_date": {
+          "type": "date",
+          "description": "'yyyy-mm-dd'",
+          "required": "required"
+        },
+        "estimated_dispatch_at": {
+          "type": "date",
+          "description": "'yyyy-mm-dd'",
+          "required": "required"
+        },
+        "confirmation_note": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "DeclineBulkModel": {
+      "id": "DeclineBulkModel",
+      "required": [
+        "id",
+        "decline_reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Order Id"
+        },
+        "decline_reason": {
+          "type": "string",
+          "description": null,
+          "required": "required"
+        }
+      }
+    },
+    "DispatchBulkModel": {
+      "id": "DispatchBulkModel",
+      "required": [
+        "id",
+        "estimated_delivery_date"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Order Id"
+        },
+        "estimated_delivery_date": {
+          "type": "date",
+          "description": "'yyyy-mm-dd'",
+          "required": "required"
+        },
+        "resolve_enquiry": {
+          "type": "boolean",
+          "description": null
+        },
+        "tracking_number": {
+          "type": "string",
+          "description": null
+        },
+        "parcel_tracking_url": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "DispatchNotesBulkModel": {
+      "id": "DispatchNotesBulkModel",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Order Id"
+        }
+      }
+    },
+    "OrderDetailsBulkModel": {
+      "id": "OrderDetailsBulkModel",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Order Id"
+        }
+      }
+    }
+  }
+}

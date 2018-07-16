@@ -1,0 +1,26 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "apis": [
+    {
+      "path": "orders.json",
+      "description": "Order Management"
+    },
+    {
+      "path": "refunds.json",
+      "description": "Refunds"
+    }
+  ],
+  "info": {
+    "title": "Noths",
+    "description": "www.notonthehighstreet.com API client"
+  },
+  "authorizations": {
+    "token": {
+      "type": "apiKey",
+      "passAs": "query",
+      "keyname": "token"
+    }
+  }
+}

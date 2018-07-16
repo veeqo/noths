@@ -1,0 +1,128 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "refunds",
+  "apis": [
+    {
+      "path": "/api/v1/orders/{order_id}/refunds",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "order_id",
+              "type": "integer",
+              "description": "Order id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "refund_reason",
+              "type": "string",
+              "description": "Customer will see this message",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "cents",
+              "type": "integer",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Refund an order",
+          "notes": "Refunds all or part of an order",
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "RefundResponse",
+              "message": "          A status code of 200 indicates that the order was eligible to be refunded and is expected to be processed\n          successfully. This is not a guarantee that the order will be refunded. Processing a refund is not instantaneous\n          and may take some time.\n"
+            },
+            {
+              "code": 400,
+              "responseModel": null,
+              "message": "Bad Request"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "method": "post",
+          "nickname": "Refunds#create",
+          "authorizations": {
+            "token": [
+
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "models": {
+    "RefundResponse": {
+      "id": "RefundResponse",
+      "required": [
+        "status",
+        "errors",
+        "order_refund"
+      ],
+      "properties": {
+        "status": {
+          "type": "integer",
+          "description": null
+        },
+        "errors": {
+          "type": "array",
+          "description": null,
+          "items": {
+            "$ref": "Error"
+          }
+        },
+        "order_refund": {
+          "type": "OrderRefund",
+          "description": null,
+          "items": {
+            "$ref": "OrderRefund"
+          }
+        }
+      }
+    },
+    "OrderRefund": {
+      "id": "OrderRefund",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": null
+        }
+      }
+    },
+    "Error": {
+      "id": "Error",
+      "required": [
+        "code",
+        "title"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": null
+        },
+        "title": {
+          "type": "string",
+          "description": null
+        }
+      }
+    }
+  }
+}
