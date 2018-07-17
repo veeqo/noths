@@ -1,0 +1,16 @@
+{
+  "gitRepoId":"noths",
+  "gitUserId":"veeqo",
+  "httpUserAgent":"Noths/#{Noths::VERSION} (Ruby www.notonthehighstreet.com API client +https://github.com/veeqo/noths)",
+  "additionalProperties": {
+    "gemName":"noths",
+    "gemAuthor":"Rustam Sharshenov",
+    "gemAuthorEmail":"rustam@sharshenov.com",
+    "gemHomepage":"https://github.com/veeqo/noths",
+    "gemLicense":"MIT",
+    "gemVersion":"0.1.0",
+    "moduleName":"Noths",
+    "gemSummary":"Swagger client for https://www.notonthehighstreet.com/",
+    "gemDescription":"Swagger client for https://www.notonthehighstreet.com/"
+  }
+}
