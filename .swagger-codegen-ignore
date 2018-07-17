@@ -1,0 +1,4 @@
+# Swagger Codegen Ignore
+
+git_push.sh
+.gitignore
