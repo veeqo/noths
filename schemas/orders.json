@@ -66,6 +66,9 @@
           ],
           "method": "post",
           "nickname": "Orders#acceptance",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -120,6 +123,9 @@
           ],
           "method": "post",
           "nickname": "Orders#decline",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -203,6 +209,9 @@
           ],
           "method": "post",
           "nickname": "Orders#dispatch_order",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -421,6 +430,9 @@
           ],
           "method": "post",
           "nickname": "Orders#acceptance_bulk",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -471,6 +483,9 @@
           ],
           "method": "post",
           "nickname": "Orders#decline_bulk",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -528,6 +543,9 @@
           ],
           "method": "post",
           "nickname": "Orders#dispatch_orders_bulk",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -578,6 +596,9 @@
           ],
           "method": "post",
           "nickname": "Orders#dispatch_notes_bulk",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
@@ -628,6 +649,9 @@
           ],
           "method": "post",
           "nickname": "Orders#order_details_bulk",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 

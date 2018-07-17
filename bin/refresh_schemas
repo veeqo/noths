@@ -24,6 +24,7 @@ def apply_ammendments(api_schema)
   api_schema.fetch(:apis).each do |endpoint|
     endpoint.fetch(:operations).each do |method|
       method[:nickname] = method[:nickname].sub('Api::V1::', '') unless method[:nickname].nil?
+      method[:consumes] = ['application/x-www-form-urlencoded'] if ['post', 'patch', 'put', 'delete'].include? method[:method].downcase
 
       token_parameter = method[:parameters].detect { |p| p[:name] == 'token' }
 

@@ -57,6 +57,9 @@
           ],
           "method": "post",
           "nickname": "Refunds#create",
+          "consumes": [
+            "application/x-www-form-urlencoded"
+          ],
           "authorizations": {
             "token": [
 
