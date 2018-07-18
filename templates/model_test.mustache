@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+# Unit tests for {{moduleName}}::{{classname}}
+{{#models}}{{#model}}describe '{{classname}}' do
+  let(:instance) { {{moduleName}}::{{classname}}.new }
+
+  describe 'test an instance of {{classname}}' do
+    it 'should create an instance of {{classname}}' do
+      expect(instance).to be_instance_of({{moduleName}}::{{classname}})
+    end
+  end
+{{#vars}}
+  describe 'test attribute "{{{name}}}"' do
+    it 'should work'
+  end
+
+{{/vars}}
+end
+{{/model}}{{/models}}

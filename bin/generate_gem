@@ -3,12 +3,14 @@
 gem_dir         = File.expand_path('../', __dir__)
 config_path     = File.expand_path('../swagger_config.json', __dir__)
 api_schema_path = File.expand_path('../schemas/api-docs.json', __dir__)
+templates_dir   = File.expand_path('../templates', __dir__)
 
 default_generator_options = {
   '-l' => 'ruby',
   '-i' => api_schema_path,
   '-o' => gem_dir,
-  '-c' => config_path
+  '-c' => config_path,
+  '-t' => templates_dir
 }
 
 generator_options = default_generator_options.merge(Hash[*ARGV])
