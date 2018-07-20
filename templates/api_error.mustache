@@ -24,5 +24,10 @@ module {{moduleName}}
         super arg
       end
     end
+
+    def response
+      return unless response_headers['Content-Type'].include?('application/json')
+      JSON.parse(response_body, symbolize_names: true)
+    end
   end
 end
