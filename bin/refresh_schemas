@@ -47,6 +47,13 @@ def apply_ammendments(api_schema)
 
         p[:name] = :payload if p[:paramType] == 'body' && p[:name] == ''
       end
+
+      method[:responseMessages].each do |response_message|
+        next unless response_message[:message].match?(/pdf/i)
+
+        response_message[:responseModel] ||= 'File'
+        method[:produces] ||= ['application/pdf', 'application/json']
+      end
     end
   end
 
@@ -89,6 +96,8 @@ main_schema[:authorizations] ||= {
     'keyname':  'token'
   }
 }
+
+main_schema[:produces] ||= ['application/json']
 
 File.open [schemas_dir, File.basename(api_docs_uri.path)].join('/'), 'w' do |io|
   io.write JSON.pretty_generate(main_schema)

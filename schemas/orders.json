@@ -251,7 +251,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": null,
+              "responseModel": "File",
               "message": "Returns a PDF"
             },
             {
@@ -276,7 +276,11 @@
             "token": [
 
             ]
-          }
+          },
+          "produces": [
+            "application/pdf",
+            "application/json"
+          ]
         }
       ]
     },
@@ -298,7 +302,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": null,
+              "responseModel": "File",
               "message": "Returns a PDF"
             },
             {
@@ -323,7 +327,11 @@
             "token": [
 
             ]
-          }
+          },
+          "produces": [
+            "application/pdf",
+            "application/json"
+          ]
         }
       ]
     },
@@ -359,7 +367,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": null,
+              "responseModel": "File",
               "message": "Returns a PDF"
             },
             {
@@ -384,7 +392,11 @@
             "token": [
 
             ]
-          }
+          },
+          "produces": [
+            "application/pdf",
+            "application/json"
+          ]
         }
       ]
     },
@@ -575,7 +587,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": null,
+              "responseModel": "File",
               "message": "Returns a PDF"
             },
             {
@@ -603,7 +615,11 @@
             "token": [
 
             ]
-          }
+          },
+          "produces": [
+            "application/pdf",
+            "application/json"
+          ]
         }
       ]
     },
@@ -628,7 +644,7 @@
           "responseMessages": [
             {
               "code": 200,
-              "responseModel": null,
+              "responseModel": "File",
               "message": "Returns a PDF"
             },
             {
@@ -656,7 +672,11 @@
             "token": [
 
             ]
-          }
+          },
+          "produces": [
+            "application/pdf",
+            "application/json"
+          ]
         }
       ]
     },

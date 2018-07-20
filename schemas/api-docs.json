@@ -22,5 +22,8 @@
       "passAs": "query",
       "keyname": "token"
     }
-  }
+  },
+  "produces": [
+    "application/json"
+  ]
 }
