@@ -1,6 +1,6 @@
 # Noths::RefundsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to https://api.notonthehighstreet.com
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

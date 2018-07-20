@@ -1,6 +1,6 @@
 # Noths::OrdersApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to https://api.notonthehighstreet.com
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -245,7 +245,7 @@ nil (empty response body)
 
 
 # **orders_dispatch_note**
-> orders_dispatch_note(id, opts)
+> File orders_dispatch_note(id, opts)
 
 Generate a dispatch note pdf or gift note pdf.
 
@@ -273,7 +273,8 @@ opts = {
 
 begin
   #Generate a dispatch note pdf or gift note pdf.
-  api_instance.orders_dispatch_note(id, opts)
+  result = api_instance.orders_dispatch_note(id, opts)
+  p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_dispatch_note: #{e}"
 end
@@ -288,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+**File**
 
 ### Authorization
 
@@ -297,12 +298,12 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/pdf, application/json
 
 
 
 # **orders_dispatch_notes_bulk**
-> orders_dispatch_notes_bulk(payload)
+> File orders_dispatch_notes_bulk(payload)
 
 Generate pdf with dispatch note for each order
 
@@ -327,7 +328,8 @@ payload = [Noths::DispatchNotesBulkModel.new] # Array<DispatchNotesBulkModel> |
 
 begin
   #Generate pdf with dispatch note for each order
-  api_instance.orders_dispatch_notes_bulk(payload)
+  result = api_instance.orders_dispatch_notes_bulk(payload)
+  p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_dispatch_notes_bulk: #{e}"
 end
@@ -341,7 +343,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+**File**
 
 ### Authorization
 
@@ -350,7 +352,7 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: Not defined
+ - **Accept**: application/pdf, application/json
 
 
 
@@ -577,7 +579,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_invoice**
-> orders_invoice(id, type)
+> File orders_invoice(id, type)
 
 Generate a vat invoice pdf.
 
@@ -604,7 +606,8 @@ type = "type_example" # String | Type of invoice
 
 begin
   #Generate a vat invoice pdf.
-  api_instance.orders_invoice(id, type)
+  result = api_instance.orders_invoice(id, type)
+  p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_invoice: #{e}"
 end
@@ -619,7 +622,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+**File**
 
 ### Authorization
 
@@ -628,12 +631,12 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/pdf, application/json
 
 
 
 # **orders_order_details**
-> orders_order_details(id)
+> File orders_order_details(id)
 
 Generate an order details pdf
 
@@ -658,7 +661,8 @@ id = 56 # Integer | Order id
 
 begin
   #Generate an order details pdf
-  api_instance.orders_order_details(id)
+  result = api_instance.orders_order_details(id)
+  p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_order_details: #{e}"
 end
@@ -672,7 +676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+**File**
 
 ### Authorization
 
@@ -681,12 +685,12 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/pdf, application/json
 
 
 
 # **orders_order_details_bulk**
-> orders_order_details_bulk(payload)
+> File orders_order_details_bulk(payload)
 
 Generate pdf with order details for each order
 
@@ -711,7 +715,8 @@ payload = [Noths::OrderDetailsBulkModel.new] # Array<OrderDetailsBulkModel> |
 
 begin
   #Generate pdf with order details for each order
-  api_instance.orders_order_details_bulk(payload)
+  result = api_instance.orders_order_details_bulk(payload)
+  p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_order_details_bulk: #{e}"
 end
@@ -725,7 +730,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+**File**
 
 ### Authorization
 
@@ -734,7 +739,7 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: Not defined
+ - **Accept**: application/pdf, application/json
 
 
 
