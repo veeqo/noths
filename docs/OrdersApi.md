@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 
 # **orders_acceptance**
-> orders_acceptance(id, estimated_delivery_date, estimated_dispatch_at, opts)
+> orders_acceptance(token, id, estimated_delivery_date, estimated_dispatch_at, opts)
 
 Accept an order
 
@@ -30,15 +30,10 @@ Accept an order
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order id
 
@@ -52,7 +47,7 @@ opts = {
 
 begin
   #Accept an order
-  api_instance.orders_acceptance(id, estimated_delivery_date, estimated_dispatch_at, opts)
+  api_instance.orders_acceptance(token, id, estimated_delivery_date, estimated_dispatch_at, opts)
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_acceptance: #{e}"
 end
@@ -62,6 +57,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order id | 
  **estimated_delivery_date** | **Date**| &#39;yyyy-mm-dd&#39; | 
  **estimated_dispatch_at** | **Date**| &#39;yyyy-mm-dd&#39; | 
@@ -73,7 +69,7 @@ nil (empty response body)
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -83,7 +79,7 @@ nil (empty response body)
 
 
 # **orders_acceptance_bulk**
-> orders_acceptance_bulk(payload)
+> orders_acceptance_bulk(token, payload)
 
 Accept multiple orders
 
@@ -93,22 +89,17 @@ Returns an array of hashes containing order ids and status codes. A status code 
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 payload = [Noths::AcceptanceBulkModel.new] # Array<AcceptanceBulkModel> | 
 
 
 begin
   #Accept multiple orders
-  api_instance.orders_acceptance_bulk(payload)
+  api_instance.orders_acceptance_bulk(token, payload)
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_acceptance_bulk: #{e}"
 end
@@ -118,6 +109,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **payload** | [**Array&lt;AcceptanceBulkModel&gt;**](AcceptanceBulkModel.md)|  | 
 
 ### Return type
@@ -126,7 +118,7 @@ nil (empty response body)
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -136,7 +128,7 @@ nil (empty response body)
 
 
 # **orders_decline**
-> orders_decline(id, decline_reason)
+> orders_decline(token, id, decline_reason)
 
 Decline an order
 
@@ -146,15 +138,10 @@ Declines an order that is in the placed state
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order id
 
@@ -163,7 +150,7 @@ decline_reason = "decline_reason_example" # String |
 
 begin
   #Decline an order
-  api_instance.orders_decline(id, decline_reason)
+  api_instance.orders_decline(token, id, decline_reason)
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_decline: #{e}"
 end
@@ -173,6 +160,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order id | 
  **decline_reason** | **String**|  | 
 
@@ -182,7 +170,7 @@ nil (empty response body)
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -192,7 +180,7 @@ nil (empty response body)
 
 
 # **orders_decline_bulk**
-> orders_decline_bulk(payload)
+> orders_decline_bulk(token, payload)
 
 Decline multiple orders
 
@@ -202,22 +190,17 @@ Returns an array of hashes containing order ids and status codes. A status code 
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 payload = [Noths::DeclineBulkModel.new] # Array<DeclineBulkModel> | 
 
 
 begin
   #Decline multiple orders
-  api_instance.orders_decline_bulk(payload)
+  api_instance.orders_decline_bulk(token, payload)
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_decline_bulk: #{e}"
 end
@@ -227,6 +210,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **payload** | [**Array&lt;DeclineBulkModel&gt;**](DeclineBulkModel.md)|  | 
 
 ### Return type
@@ -235,7 +219,7 @@ nil (empty response body)
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -245,7 +229,7 @@ nil (empty response body)
 
 
 # **orders_dispatch_note**
-> File orders_dispatch_note(id, opts)
+> File orders_dispatch_note(token, id, opts)
 
 Generate a dispatch note pdf or gift note pdf.
 
@@ -255,15 +239,10 @@ Force the kind of document by passing the force_type parameter. A gift note can 
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order id
 
@@ -273,7 +252,7 @@ opts = {
 
 begin
   #Generate a dispatch note pdf or gift note pdf.
-  result = api_instance.orders_dispatch_note(id, opts)
+  result = api_instance.orders_dispatch_note(token, id, opts)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_dispatch_note: #{e}"
@@ -284,6 +263,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order id | 
  **force_type** | **String**| Type of document | [optional] 
 
@@ -293,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -303,7 +283,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_dispatch_notes_bulk**
-> File orders_dispatch_notes_bulk(payload)
+> File orders_dispatch_notes_bulk(token, payload)
 
 Generate pdf with dispatch note for each order
 
@@ -313,22 +293,17 @@ Generate pdf with dispatch note for each order
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 payload = [Noths::DispatchNotesBulkModel.new] # Array<DispatchNotesBulkModel> | 
 
 
 begin
   #Generate pdf with dispatch note for each order
-  result = api_instance.orders_dispatch_notes_bulk(payload)
+  result = api_instance.orders_dispatch_notes_bulk(token, payload)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_dispatch_notes_bulk: #{e}"
@@ -339,6 +314,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **payload** | [**Array&lt;DispatchNotesBulkModel&gt;**](DispatchNotesBulkModel.md)|  | 
 
 ### Return type
@@ -347,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -357,7 +333,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_dispatch_order**
-> orders_dispatch_order(id, estimated_delivery_date, opts)
+> orders_dispatch_order(token, id, estimated_delivery_date, opts)
 
 Dispatch an order
 
@@ -367,15 +343,10 @@ Dispatches an order that is in an accepted state and has also had its dispatch n
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order id
 
@@ -390,7 +361,7 @@ opts = {
 
 begin
   #Dispatch an order
-  api_instance.orders_dispatch_order(id, estimated_delivery_date, opts)
+  api_instance.orders_dispatch_order(token, id, estimated_delivery_date, opts)
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_dispatch_order: #{e}"
 end
@@ -400,6 +371,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order id | 
  **estimated_delivery_date** | **Date**| &#39;yyyy-mm-dd&#39; | 
  **resolve_enquiry** | **BOOLEAN**|  | [optional] 
@@ -413,7 +385,7 @@ nil (empty response body)
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -423,7 +395,7 @@ nil (empty response body)
 
 
 # **orders_dispatch_orders_bulk**
-> orders_dispatch_orders_bulk(payload, opts)
+> orders_dispatch_orders_bulk(token, payload, opts)
 
 Dispatch multiple orders
 
@@ -433,15 +405,10 @@ Returns an array of hashes containing order ids and status codes. A status code 
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 payload = [Noths::DispatchBulkModel.new] # Array<DispatchBulkModel> | 
 
@@ -451,7 +418,7 @@ opts = {
 
 begin
   #Dispatch multiple orders
-  api_instance.orders_dispatch_orders_bulk(payload, opts)
+  api_instance.orders_dispatch_orders_bulk(token, payload, opts)
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_dispatch_orders_bulk: #{e}"
 end
@@ -461,6 +428,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **payload** | [**Array&lt;DispatchBulkModel&gt;**](DispatchBulkModel.md)|  | 
  **ignore_unresolved_enquiries** | **BOOLEAN**| Defaults to false | [optional] 
 
@@ -470,7 +438,7 @@ nil (empty response body)
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -480,7 +448,7 @@ nil (empty response body)
 
 
 # **orders_index**
-> OrderIndex orders_index(opts)
+> OrderIndex orders_index(token, opts)
 
 Fetch orders
 
@@ -490,15 +458,10 @@ Lists orders descending by placed at time by default.<p/>If you just want a coun
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 opts = { 
   customer_expected_delivery_date_from: DateTime.parse("2013-10-20T19:20:30+01:00"), # DateTime | Earliest customer_expected_delivery_date datetime - format iso8601 eg '2011-10-05T22:26:12-04:00'
@@ -528,7 +491,7 @@ opts = {
 
 begin
   #Fetch orders
-  result = api_instance.orders_index(opts)
+  result = api_instance.orders_index(token, opts)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_index: #{e}"
@@ -539,6 +502,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **customer_expected_delivery_date_from** | **DateTime**| Earliest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39; | [optional] 
  **customer_expected_delivery_date_to** | **DateTime**| Latest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39; | [optional] 
  **delivery_service_code** | **String**| Delivery service code | [optional] 
@@ -569,7 +533,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -579,7 +543,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_invoice**
-> File orders_invoice(id, type)
+> File orders_invoice(token, id, type)
 
 Generate a vat invoice pdf.
 
@@ -589,15 +553,10 @@ Generate a vat invoice pdf.
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order id
 
@@ -606,7 +565,7 @@ type = "type_example" # String | Type of invoice
 
 begin
   #Generate a vat invoice pdf.
-  result = api_instance.orders_invoice(id, type)
+  result = api_instance.orders_invoice(token, id, type)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_invoice: #{e}"
@@ -617,6 +576,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order id | 
  **type** | **String**| Type of invoice | 
 
@@ -626,7 +586,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -636,7 +596,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_order_details**
-> File orders_order_details(id)
+> File orders_order_details(token, id)
 
 Generate an order details pdf
 
@@ -646,22 +606,17 @@ Here is an example of how to obtain a pdf using curl:       <pre>curl -XPOST [UR
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order id
 
 
 begin
   #Generate an order details pdf
-  result = api_instance.orders_order_details(id)
+  result = api_instance.orders_order_details(token, id)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_order_details: #{e}"
@@ -672,6 +627,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order id | 
 
 ### Return type
@@ -680,7 +636,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -690,7 +646,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_order_details_bulk**
-> File orders_order_details_bulk(payload)
+> File orders_order_details_bulk(token, payload)
 
 Generate pdf with order details for each order
 
@@ -700,22 +656,17 @@ Generate pdf with order details for each order
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 payload = [Noths::OrderDetailsBulkModel.new] # Array<OrderDetailsBulkModel> | 
 
 
 begin
   #Generate pdf with order details for each order
-  result = api_instance.orders_order_details_bulk(payload)
+  result = api_instance.orders_order_details_bulk(token, payload)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_order_details_bulk: #{e}"
@@ -726,6 +677,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **payload** | [**Array&lt;OrderDetailsBulkModel&gt;**](OrderDetailsBulkModel.md)|  | 
 
 ### Return type
@@ -734,7 +686,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 
@@ -744,7 +696,7 @@ Name | Type | Description  | Notes
 
 
 # **orders_show**
-> Order orders_show(id, opts)
+> Order orders_show(token, id, opts)
 
 Fetch a single Order
 
@@ -752,15 +704,10 @@ Fetch a single Order
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::OrdersApi.new
+
+token = "token_example" # String | Authentication credential
 
 id = 56 # Integer | Order Id
 
@@ -770,7 +717,7 @@ opts = {
 
 begin
   #Fetch a single Order
-  result = api_instance.orders_show(id, opts)
+  result = api_instance.orders_show(token, id, opts)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling OrdersApi->orders_show: #{e}"
@@ -781,6 +728,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **id** | **Integer**| Order Id | 
  **include** | **String**|         Comma separated list of nodes to expand. Currently the available values are:         &lt;br /&gt;&lt;b style&#x3D;\&quot;margin-left: 10px\&quot;&gt;financials&lt;/b&gt;         &lt;p style&#x3D;\&quot;margin-left: 20px\&quot;&gt;           Additional financial data about this order, eg: commission and discount amounts.         &lt;/p&gt;  | [optional] 
 
@@ -790,7 +738,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 

@@ -26,13 +26,6 @@ def apply_ammendments(api_schema)
       method[:nickname] = method[:nickname].sub('Api::V1::', '') unless method[:nickname].nil?
       method[:consumes] = ['application/x-www-form-urlencoded'] if ['post', 'patch', 'put', 'delete'].include? method[:method].downcase
 
-      token_parameter = method[:parameters].detect { |p| p[:name] == 'token' }
-
-      if token_parameter
-        method[:authorizations] ||= { token: [] }
-        method[:parameters].delete(token_parameter)
-      end
-
       method[:parameters].each do |p|
         p[:required] = true if p[:required] == 'required'
 
@@ -87,14 +80,6 @@ end
 main_schema[:info] ||= {
   title: 'Noths',
   description: 'www.notonthehighstreet.com API client'
-}
-
-main_schema[:authorizations] ||= {
-  token: {
-    'type':     'apiKey',
-    'passAs':   'query',
-    'keyname':  'token'
-  }
 }
 
 main_schema[:produces] ||= ['application/json']

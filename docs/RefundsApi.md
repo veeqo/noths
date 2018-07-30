@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **refunds_create**
-> RefundResponse refunds_create(order_id, refund_reason, cents)
+> RefundResponse refunds_create(token, order_id, refund_reason, cents)
 
 Refund an order
 
@@ -18,15 +18,10 @@ Refunds all or part of an order
 ```ruby
 # load the gem
 require 'noths'
-# setup authorization
-Noths.configure do |config|
-  # Configure API key authorization: token
-  config.api_key['token'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['token'] = 'Bearer'
-end
 
 api_instance = Noths::RefundsApi.new
+
+token = "token_example" # String | Authentication credential
 
 order_id = 56 # Integer | Order id
 
@@ -37,7 +32,7 @@ cents = 56 # Integer |
 
 begin
   #Refund an order
-  result = api_instance.refunds_create(order_id, refund_reason, cents)
+  result = api_instance.refunds_create(token, order_id, refund_reason, cents)
   p result
 rescue Noths::ApiError => e
   puts "Exception when calling RefundsApi->refunds_create: #{e}"
@@ -48,6 +43,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **token** | **String**| Authentication credential | 
  **order_id** | **Integer**| Order id | 
  **refund_reason** | **String**| Customer will see this message | 
  **cents** | **Integer**|  | 
@@ -58,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[token](../README.md#token)
+No authorization required
 
 ### HTTP request headers
 

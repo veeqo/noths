@@ -10,6 +10,13 @@
         {
           "parameters": [
             {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
+            {
               "paramType": "path",
               "name": "id",
               "type": "integer",
@@ -68,12 +75,7 @@
           "nickname": "Orders#acceptance",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     },
@@ -82,6 +84,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",
@@ -125,12 +134,7 @@
           "nickname": "Orders#decline",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     },
@@ -139,6 +143,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",
@@ -211,12 +222,7 @@
           "nickname": "Orders#dispatch_order",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     },
@@ -225,6 +231,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",
@@ -272,11 +285,6 @@
           ],
           "method": "get",
           "nickname": "Orders#dispatch_note",
-          "authorizations": {
-            "token": [
-
-            ]
-          },
           "produces": [
             "application/pdf",
             "application/json"
@@ -289,6 +297,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",
@@ -323,11 +338,6 @@
           ],
           "method": "get",
           "nickname": "Orders#order_details",
-          "authorizations": {
-            "token": [
-
-            ]
-          },
           "produces": [
             "application/pdf",
             "application/json"
@@ -340,6 +350,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",
@@ -388,11 +405,6 @@
           ],
           "method": "get",
           "nickname": "Orders#invoice",
-          "authorizations": {
-            "token": [
-
-            ]
-          },
           "produces": [
             "application/pdf",
             "application/json"
@@ -405,6 +417,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "body",
               "name": "payload",
@@ -444,12 +463,7 @@
           "nickname": "Orders#acceptance_bulk",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     },
@@ -458,6 +472,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "body",
               "name": "payload",
@@ -497,12 +518,7 @@
           "nickname": "Orders#decline_bulk",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     },
@@ -511,6 +527,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "query",
               "name": "ignore_unresolved_enquiries",
@@ -557,12 +580,7 @@
           "nickname": "Orders#dispatch_orders_bulk",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     },
@@ -571,6 +589,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "body",
               "name": "payload",
@@ -611,11 +636,6 @@
           "consumes": [
             "application/x-www-form-urlencoded"
           ],
-          "authorizations": {
-            "token": [
-
-            ]
-          },
           "produces": [
             "application/pdf",
             "application/json"
@@ -628,6 +648,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "body",
               "name": "payload",
@@ -668,11 +695,6 @@
           "consumes": [
             "application/x-www-form-urlencoded"
           ],
-          "authorizations": {
-            "token": [
-
-            ]
-          },
           "produces": [
             "application/pdf",
             "application/json"
@@ -685,6 +707,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "query",
               "name": "customer_expected_delivery_date[from]",
@@ -937,12 +966,7 @@
             }
           ],
           "method": "get",
-          "nickname": "Orders#index",
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          "nickname": "Orders#index"
         }
       ]
     },
@@ -951,6 +975,13 @@
       "operations": [
         {
           "parameters": [
+            {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
             {
               "paramType": "path",
               "name": "id",
@@ -990,12 +1021,7 @@
             }
           ],
           "method": "get",
-          "nickname": "Orders#show",
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          "nickname": "Orders#show"
         }
       ]
     }

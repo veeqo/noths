@@ -12,28 +12,34 @@ module Noths
 
     # Accept an order
     #           Accept an order that is in the placed state.           Note: In rare instances orders may not transition to the 'accepted' state           immediately. 
+    # @param token Authentication credential
     # @param id Order id
     # @param estimated_delivery_date &#39;yyyy-mm-dd&#39;
     # @param estimated_dispatch_at &#39;yyyy-mm-dd&#39;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :confirmation_note 
     # @return [nil]
-    def orders_acceptance(id, estimated_delivery_date, estimated_dispatch_at, opts = {})
-      orders_acceptance_with_http_info(id, estimated_delivery_date, estimated_dispatch_at, opts)
+    def orders_acceptance(token, id, estimated_delivery_date, estimated_dispatch_at, opts = {})
+      orders_acceptance_with_http_info(token, id, estimated_delivery_date, estimated_dispatch_at, opts)
       return nil
     end
 
     # Accept an order
     #           Accept an order that is in the placed state.           Note: In rare instances orders may not transition to the &#39;accepted&#39; state           immediately. 
+    # @param token Authentication credential
     # @param id Order id
     # @param estimated_delivery_date &#39;yyyy-mm-dd&#39;
     # @param estimated_dispatch_at &#39;yyyy-mm-dd&#39;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :confirmation_note 
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def orders_acceptance_with_http_info(id, estimated_delivery_date, estimated_dispatch_at, opts = {})
+    def orders_acceptance_with_http_info(token, id, estimated_delivery_date, estimated_dispatch_at, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_acceptance ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_acceptance"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -52,6 +58,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -66,7 +73,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -81,22 +88,28 @@ module Noths
 
     # Accept multiple orders
     # Returns an array of hashes containing order ids and status codes. A status code of 200 indicates that the order was eligible to be accepted and is expected to be processed successfully. This is not a guarantee that the order will be accepted. Processing acceptance is not instantaneous and may take some time while funds are captured.     Example response:     <pre>     [       {         \"id\": 12,         \"status\": 200,         \"errors\": []       },       {         \"id\": 22,         \"status\": 404,         \"errors\": [           {             \"code\": \"RESOURCE_NOT_FOUND\",             \"title\": \"Couldn't find the requested resource\"           }         ]       }     ]     </pre> 
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def orders_acceptance_bulk(payload, opts = {})
-      orders_acceptance_bulk_with_http_info(payload, opts)
+    def orders_acceptance_bulk(token, payload, opts = {})
+      orders_acceptance_bulk_with_http_info(token, payload, opts)
       return nil
     end
 
     # Accept multiple orders
     # Returns an array of hashes containing order ids and status codes. A status code of 200 indicates that the order was eligible to be accepted and is expected to be processed successfully. This is not a guarantee that the order will be accepted. Processing acceptance is not instantaneous and may take some time while funds are captured.     Example response:     &lt;pre&gt;     [       {         \&quot;id\&quot;: 12,         \&quot;status\&quot;: 200,         \&quot;errors\&quot;: []       },       {         \&quot;id\&quot;: 22,         \&quot;status\&quot;: 404,         \&quot;errors\&quot;: [           {             \&quot;code\&quot;: \&quot;RESOURCE_NOT_FOUND\&quot;,             \&quot;title\&quot;: \&quot;Couldn&#39;t find the requested resource\&quot;           }         ]       }     ]     &lt;/pre&gt; 
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def orders_acceptance_bulk_with_http_info(payload, opts = {})
+    def orders_acceptance_bulk_with_http_info(token, payload, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_acceptance_bulk ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_acceptance_bulk"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
@@ -107,6 +120,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -118,7 +132,7 @@ module Noths
 
       # http body (model)
       post_body = @api_client.object_to_http_body(payload)
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -133,24 +147,30 @@ module Noths
 
     # Decline an order
     # Declines an order that is in the placed state
+    # @param token Authentication credential
     # @param id Order id
     # @param decline_reason 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def orders_decline(id, decline_reason, opts = {})
-      orders_decline_with_http_info(id, decline_reason, opts)
+    def orders_decline(token, id, decline_reason, opts = {})
+      orders_decline_with_http_info(token, id, decline_reason, opts)
       return nil
     end
 
     # Decline an order
     # Declines an order that is in the placed state
+    # @param token Authentication credential
     # @param id Order id
     # @param decline_reason 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def orders_decline_with_http_info(id, decline_reason, opts = {})
+    def orders_decline_with_http_info(token, id, decline_reason, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_decline ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_decline"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -165,6 +185,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -177,7 +198,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -192,22 +213,28 @@ module Noths
 
     # Decline multiple orders
     # Returns an array of hashes containing order ids and status codes. A status code of 200       indicates a successful update whereas a code of 400 indicates failure.     Example response:     <pre>     [       {         \"id\": 12,         \"status\": 200,         \"errors\": []       },       {         \"id\": 22,         \"status\": 404,         \"errors\": [           {             \"code\": \"RESOURCE_NOT_FOUND\",             \"title\": \"Couldn't find the requested resource\"           }         ]       }     ]     </pre> 
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def orders_decline_bulk(payload, opts = {})
-      orders_decline_bulk_with_http_info(payload, opts)
+    def orders_decline_bulk(token, payload, opts = {})
+      orders_decline_bulk_with_http_info(token, payload, opts)
       return nil
     end
 
     # Decline multiple orders
     # Returns an array of hashes containing order ids and status codes. A status code of 200       indicates a successful update whereas a code of 400 indicates failure.     Example response:     &lt;pre&gt;     [       {         \&quot;id\&quot;: 12,         \&quot;status\&quot;: 200,         \&quot;errors\&quot;: []       },       {         \&quot;id\&quot;: 22,         \&quot;status\&quot;: 404,         \&quot;errors\&quot;: [           {             \&quot;code\&quot;: \&quot;RESOURCE_NOT_FOUND\&quot;,             \&quot;title\&quot;: \&quot;Couldn&#39;t find the requested resource\&quot;           }         ]       }     ]     &lt;/pre&gt; 
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def orders_decline_bulk_with_http_info(payload, opts = {})
+    def orders_decline_bulk_with_http_info(token, payload, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_decline_bulk ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_decline_bulk"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
@@ -218,6 +245,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -229,7 +257,7 @@ module Noths
 
       # http body (model)
       post_body = @api_client.object_to_http_body(payload)
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -244,24 +272,30 @@ module Noths
 
     # Generate a dispatch note pdf or gift note pdf.
     # Force the kind of document by passing the force_type parameter. A gift note can only be printed for an order that is a gift, which will be the default behaviour.<p/>Here is an example of how to obtain a pdf using curl:       <pre>curl -XPOST [URL] > document.pdf</pre>
+    # @param token Authentication credential
     # @param id Order id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :force_type Type of document
     # @return [File]
-    def orders_dispatch_note(id, opts = {})
-      data, _status_code, _headers = orders_dispatch_note_with_http_info(id, opts)
+    def orders_dispatch_note(token, id, opts = {})
+      data, _status_code, _headers = orders_dispatch_note_with_http_info(token, id, opts)
       return data
     end
 
     # Generate a dispatch note pdf or gift note pdf.
     # Force the kind of document by passing the force_type parameter. A gift note can only be printed for an order that is a gift, which will be the default behaviour.&lt;p/&gt;Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -XPOST [URL] &gt; document.pdf&lt;/pre&gt;
+    # @param token Authentication credential
     # @param id Order id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :force_type Type of document
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def orders_dispatch_note_with_http_info(id, opts = {})
+    def orders_dispatch_note_with_http_info(token, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_dispatch_note ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_dispatch_note"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -275,6 +309,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
       query_params[:'force_type'] = opts[:'force_type'] if !opts[:'force_type'].nil?
 
       # header parameters
@@ -287,7 +322,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -303,22 +338,28 @@ module Noths
 
     # Generate pdf with dispatch note for each order
     # <p/> Here is an example of how to obtain a pdf using curl:       <pre>curl -H \"Content-Type: application/json\" -d '[{\"id\": 123}, {\"id\": 456}]' -XPOST [URL] > document.pdf</pre><p/>       Ensure that the Content-Type header is set to \"Content-Type: application/json\".<p/>
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [File]
-    def orders_dispatch_notes_bulk(payload, opts = {})
-      data, _status_code, _headers = orders_dispatch_notes_bulk_with_http_info(payload, opts)
+    def orders_dispatch_notes_bulk(token, payload, opts = {})
+      data, _status_code, _headers = orders_dispatch_notes_bulk_with_http_info(token, payload, opts)
       return data
     end
 
     # Generate pdf with dispatch note for each order
     # &lt;p/&gt; Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -H \&quot;Content-Type: application/json\&quot; -d &#39;[{\&quot;id\&quot;: 123}, {\&quot;id\&quot;: 456}]&#39; -XPOST [URL] &gt; document.pdf&lt;/pre&gt;&lt;p/&gt;       Ensure that the Content-Type header is set to \&quot;Content-Type: application/json\&quot;.&lt;p/&gt;
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def orders_dispatch_notes_bulk_with_http_info(payload, opts = {})
+    def orders_dispatch_notes_bulk_with_http_info(token, payload, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_dispatch_notes_bulk ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_dispatch_notes_bulk"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
@@ -329,6 +370,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -342,7 +384,7 @@ module Noths
 
       # http body (model)
       post_body = @api_client.object_to_http_body(payload)
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -358,6 +400,7 @@ module Noths
 
     # Dispatch an order
     # Dispatches an order that is in an accepted state and has also had its dispatch note printed
+    # @param token Authentication credential
     # @param id Order id
     # @param estimated_delivery_date &#39;yyyy-mm-dd&#39;
     # @param [Hash] opts the optional parameters
@@ -366,13 +409,14 @@ module Noths
     # @option opts [String] :parcel_tracking_url 
     # @option opts [BOOLEAN] :ignore_unresolved_enquiries Defaults to false
     # @return [nil]
-    def orders_dispatch_order(id, estimated_delivery_date, opts = {})
-      orders_dispatch_order_with_http_info(id, estimated_delivery_date, opts)
+    def orders_dispatch_order(token, id, estimated_delivery_date, opts = {})
+      orders_dispatch_order_with_http_info(token, id, estimated_delivery_date, opts)
       return nil
     end
 
     # Dispatch an order
     # Dispatches an order that is in an accepted state and has also had its dispatch note printed
+    # @param token Authentication credential
     # @param id Order id
     # @param estimated_delivery_date &#39;yyyy-mm-dd&#39;
     # @param [Hash] opts the optional parameters
@@ -381,9 +425,13 @@ module Noths
     # @option opts [String] :parcel_tracking_url 
     # @option opts [BOOLEAN] :ignore_unresolved_enquiries Defaults to false
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def orders_dispatch_order_with_http_info(id, estimated_delivery_date, opts = {})
+    def orders_dispatch_order_with_http_info(token, id, estimated_delivery_date, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_dispatch_order ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_dispatch_order"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -398,6 +446,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -414,7 +463,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -429,24 +478,30 @@ module Noths
 
     # Dispatch multiple orders
     # Returns an array of hashes containing order ids and status codes. A status code of 200       indicates a successful update whereas a code of 400 indicates failure.     Example response:     <pre>     [       {         \"id\": 12,         \"status\": 200,         \"errors\": []       },       {         \"id\": 22,         \"status\": 404,         \"errors\": [           {             \"code\": \"RESOURCE_NOT_FOUND\",             \"title\": \"Couldn't find the requested resource\"           }         ]       }     ]     </pre> 
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @option opts [BOOLEAN] :ignore_unresolved_enquiries Defaults to false
     # @return [nil]
-    def orders_dispatch_orders_bulk(payload, opts = {})
-      orders_dispatch_orders_bulk_with_http_info(payload, opts)
+    def orders_dispatch_orders_bulk(token, payload, opts = {})
+      orders_dispatch_orders_bulk_with_http_info(token, payload, opts)
       return nil
     end
 
     # Dispatch multiple orders
     # Returns an array of hashes containing order ids and status codes. A status code of 200       indicates a successful update whereas a code of 400 indicates failure.     Example response:     &lt;pre&gt;     [       {         \&quot;id\&quot;: 12,         \&quot;status\&quot;: 200,         \&quot;errors\&quot;: []       },       {         \&quot;id\&quot;: 22,         \&quot;status\&quot;: 404,         \&quot;errors\&quot;: [           {             \&quot;code\&quot;: \&quot;RESOURCE_NOT_FOUND\&quot;,             \&quot;title\&quot;: \&quot;Couldn&#39;t find the requested resource\&quot;           }         ]       }     ]     &lt;/pre&gt; 
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @option opts [BOOLEAN] :ignore_unresolved_enquiries Defaults to false
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def orders_dispatch_orders_bulk_with_http_info(payload, opts = {})
+    def orders_dispatch_orders_bulk_with_http_info(token, payload, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_dispatch_orders_bulk ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_dispatch_orders_bulk"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
@@ -457,6 +512,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
       query_params[:'ignore_unresolved_enquiries'] = opts[:'ignore_unresolved_enquiries'] if !opts[:'ignore_unresolved_enquiries'].nil?
 
       # header parameters
@@ -469,7 +525,7 @@ module Noths
 
       # http body (model)
       post_body = @api_client.object_to_http_body(payload)
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -484,6 +540,7 @@ module Noths
 
     # Fetch orders
     # Lists orders descending by placed at time by default.<p/>If you just want a count, use per_page=0 and offset=0 .
+    # @param token Authentication credential
     # @param [Hash] opts the optional parameters
     # @option opts [DateTime] :customer_expected_delivery_date_from Earliest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39;
     # @option opts [DateTime] :customer_expected_delivery_date_to Latest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39;
@@ -509,13 +566,14 @@ module Noths
     # @option opts [String] :sort Defaults to placed_at
     # @option opts [String] :state State
     # @return [OrderIndex]
-    def orders_index(opts = {})
-      data, _status_code, _headers = orders_index_with_http_info(opts)
+    def orders_index(token, opts = {})
+      data, _status_code, _headers = orders_index_with_http_info(token, opts)
       return data
     end
 
     # Fetch orders
     # Lists orders descending by placed at time by default.&lt;p/&gt;If you just want a count, use per_page&#x3D;0 and offset&#x3D;0 .
+    # @param token Authentication credential
     # @param [Hash] opts the optional parameters
     # @option opts [DateTime] :customer_expected_delivery_date_from Earliest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39;
     # @option opts [DateTime] :customer_expected_delivery_date_to Latest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39;
@@ -541,9 +599,13 @@ module Noths
     # @option opts [String] :sort Defaults to placed_at
     # @option opts [String] :state State
     # @return [Array<(OrderIndex, Fixnum, Hash)>] OrderIndex data, response status code and response headers
-    def orders_index_with_http_info(opts = {})
+    def orders_index_with_http_info(token, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_index ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_index"
       end
       if @api_client.config.client_side_validation && opts[:'delivery_service_code'] && !['EXPRESS_12', 'EXPRESS_24', 'EXPRESS_48', 'FREE', 'SATURDAY', 'STANDARD', 'STANDARD_COURIER'].include?(opts[:'delivery_service_code'])
         fail ArgumentError, 'invalid value for "delivery_service_code", must be one of EXPRESS_12, EXPRESS_24, EXPRESS_48, FREE, SATURDAY, STANDARD, STANDARD_COURIER'
@@ -565,6 +627,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
       query_params[:'customer_expected_delivery_date[from]'] = opts[:'customer_expected_delivery_date_from'] if !opts[:'customer_expected_delivery_date_from'].nil?
       query_params[:'customer_expected_delivery_date[to]'] = opts[:'customer_expected_delivery_date_to'] if !opts[:'customer_expected_delivery_date_to'].nil?
       query_params[:'delivery_service_code'] = opts[:'delivery_service_code'] if !opts[:'delivery_service_code'].nil?
@@ -597,7 +660,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -613,24 +676,30 @@ module Noths
 
     # Generate a vat invoice pdf.
     # <p>Invoices are currently only applicable for the UK site</p>Here is an example of how to obtain a pdf using curl:       <pre>curl -XPOST [URL] > document.pdf</pre>
+    # @param token Authentication credential
     # @param id Order id
     # @param type Type of invoice
     # @param [Hash] opts the optional parameters
     # @return [File]
-    def orders_invoice(id, type, opts = {})
-      data, _status_code, _headers = orders_invoice_with_http_info(id, type, opts)
+    def orders_invoice(token, id, type, opts = {})
+      data, _status_code, _headers = orders_invoice_with_http_info(token, id, type, opts)
       return data
     end
 
     # Generate a vat invoice pdf.
     # &lt;p&gt;Invoices are currently only applicable for the UK site&lt;/p&gt;Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -XPOST [URL] &gt; document.pdf&lt;/pre&gt;
+    # @param token Authentication credential
     # @param id Order id
     # @param type Type of invoice
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def orders_invoice_with_http_info(id, type, opts = {})
+    def orders_invoice_with_http_info(token, id, type, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_invoice ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_invoice"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -649,6 +718,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
       query_params[:'type'] = type
 
       # header parameters
@@ -661,7 +731,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -677,22 +747,28 @@ module Noths
 
     # Generate an order details pdf
     # Here is an example of how to obtain a pdf using curl:       <pre>curl -XPOST [URL] > document.pdf</pre>
+    # @param token Authentication credential
     # @param id Order id
     # @param [Hash] opts the optional parameters
     # @return [File]
-    def orders_order_details(id, opts = {})
-      data, _status_code, _headers = orders_order_details_with_http_info(id, opts)
+    def orders_order_details(token, id, opts = {})
+      data, _status_code, _headers = orders_order_details_with_http_info(token, id, opts)
       return data
     end
 
     # Generate an order details pdf
     # Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -XPOST [URL] &gt; document.pdf&lt;/pre&gt;
+    # @param token Authentication credential
     # @param id Order id
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def orders_order_details_with_http_info(id, opts = {})
+    def orders_order_details_with_http_info(token, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_order_details ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_order_details"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -703,6 +779,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -714,7 +791,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -730,22 +807,28 @@ module Noths
 
     # Generate pdf with order details for each order
     # <p/> Here is an example of how to obtain a pdf using curl:       <pre>curl -H \"Content-Type: application/json\" -d '[{\"id\": 123}, {\"id\": 456}]' -XPOST [URL] > document.pdf</pre><p/>       Ensure that the Content-Type header is set to \"Content-Type: application/json\".<p/>
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [File]
-    def orders_order_details_bulk(payload, opts = {})
-      data, _status_code, _headers = orders_order_details_bulk_with_http_info(payload, opts)
+    def orders_order_details_bulk(token, payload, opts = {})
+      data, _status_code, _headers = orders_order_details_bulk_with_http_info(token, payload, opts)
       return data
     end
 
     # Generate pdf with order details for each order
     # &lt;p/&gt; Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -H \&quot;Content-Type: application/json\&quot; -d &#39;[{\&quot;id\&quot;: 123}, {\&quot;id\&quot;: 456}]&#39; -XPOST [URL] &gt; document.pdf&lt;/pre&gt;&lt;p/&gt;       Ensure that the Content-Type header is set to \&quot;Content-Type: application/json\&quot;.&lt;p/&gt;
+    # @param token Authentication credential
     # @param payload 
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def orders_order_details_bulk_with_http_info(payload, opts = {})
+    def orders_order_details_bulk_with_http_info(token, payload, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_order_details_bulk ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_order_details_bulk"
       end
       # verify the required parameter 'payload' is set
       if @api_client.config.client_side_validation && payload.nil?
@@ -756,6 +839,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -769,7 +853,7 @@ module Noths
 
       # http body (model)
       post_body = @api_client.object_to_http_body(payload)
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
@@ -785,24 +869,30 @@ module Noths
 
     # Fetch a single Order
     # 
+    # @param token Authentication credential
     # @param id Order Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include         Comma separated list of nodes to expand. Currently the available values are:         &lt;br /&gt;&lt;b style&#x3D;\&quot;margin-left: 10px\&quot;&gt;financials&lt;/b&gt;         &lt;p style&#x3D;\&quot;margin-left: 20px\&quot;&gt;           Additional financial data about this order, eg: commission and discount amounts.         &lt;/p&gt; 
     # @return [Order]
-    def orders_show(id, opts = {})
-      data, _status_code, _headers = orders_show_with_http_info(id, opts)
+    def orders_show(token, id, opts = {})
+      data, _status_code, _headers = orders_show_with_http_info(token, id, opts)
       return data
     end
 
     # Fetch a single Order
     # 
+    # @param token Authentication credential
     # @param id Order Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include         Comma separated list of nodes to expand. Currently the available values are:         &lt;br /&gt;&lt;b style&#x3D;\&quot;margin-left: 10px\&quot;&gt;financials&lt;/b&gt;         &lt;p style&#x3D;\&quot;margin-left: 20px\&quot;&gt;           Additional financial data about this order, eg: commission and discount amounts.         &lt;/p&gt; 
     # @return [Array<(Order, Fixnum, Hash)>] Order data, response status code and response headers
-    def orders_show_with_http_info(id, opts = {})
+    def orders_show_with_http_info(token, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrdersApi.orders_show ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling OrdersApi.orders_show"
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
@@ -813,6 +903,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
       query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
@@ -823,7 +914,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,

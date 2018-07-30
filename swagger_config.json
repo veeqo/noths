@@ -8,7 +8,7 @@
     "gemAuthorEmail":"rustam@sharshenov.com",
     "gemHomepage":"https://github.com/veeqo/noths",
     "gemLicense":"MIT",
-    "gemVersion":"0.1.0",
+    "gemVersion":"0.1.1",
     "moduleName":"Noths",
     "gemSummary":"Swagger client for https://www.notonthehighstreet.com/",
     "gemDescription":"Swagger client for https://www.notonthehighstreet.com/"

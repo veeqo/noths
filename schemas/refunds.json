@@ -10,6 +10,13 @@
         {
           "parameters": [
             {
+              "paramType": "query",
+              "name": "token",
+              "type": "string",
+              "description": "Authentication credential",
+              "required": true
+            },
+            {
               "paramType": "path",
               "name": "order_id",
               "type": "integer",
@@ -59,12 +66,7 @@
           "nickname": "Refunds#create",
           "consumes": [
             "application/x-www-form-urlencoded"
-          ],
-          "authorizations": {
-            "token": [
-
-            ]
-          }
+          ]
         }
       ]
     }

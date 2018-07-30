@@ -186,13 +186,6 @@ module Noths
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'token' =>
-          {
-            type: 'api_key',
-            in: 'query',
-            key: 'token',
-            value: api_key_with_prefix('token')
-          },
       }
     end
   end

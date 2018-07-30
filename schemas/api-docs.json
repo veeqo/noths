@@ -16,13 +16,6 @@
     "title": "Noths",
     "description": "www.notonthehighstreet.com API client"
   },
-  "authorizations": {
-    "token": {
-      "type": "apiKey",
-      "passAs": "query",
-      "keyname": "token"
-    }
-  },
   "produces": [
     "application/json"
   ]

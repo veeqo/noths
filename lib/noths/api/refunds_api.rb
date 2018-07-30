@@ -12,26 +12,32 @@ module Noths
 
     # Refund an order
     # Refunds all or part of an order
+    # @param token Authentication credential
     # @param order_id Order id
     # @param refund_reason Customer will see this message
     # @param cents 
     # @param [Hash] opts the optional parameters
     # @return [RefundResponse]
-    def refunds_create(order_id, refund_reason, cents, opts = {})
-      data, _status_code, _headers = refunds_create_with_http_info(order_id, refund_reason, cents, opts)
+    def refunds_create(token, order_id, refund_reason, cents, opts = {})
+      data, _status_code, _headers = refunds_create_with_http_info(token, order_id, refund_reason, cents, opts)
       return data
     end
 
     # Refund an order
     # Refunds all or part of an order
+    # @param token Authentication credential
     # @param order_id Order id
     # @param refund_reason Customer will see this message
     # @param cents 
     # @param [Hash] opts the optional parameters
     # @return [Array<(RefundResponse, Fixnum, Hash)>] RefundResponse data, response status code and response headers
-    def refunds_create_with_http_info(order_id, refund_reason, cents, opts = {})
+    def refunds_create_with_http_info(token, order_id, refund_reason, cents, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: RefundsApi.refunds_create ..."
+      end
+      # verify the required parameter 'token' is set
+      if @api_client.config.client_side_validation && token.nil?
+        fail ArgumentError, "Missing the required parameter 'token' when calling RefundsApi.refunds_create"
       end
       # verify the required parameter 'order_id' is set
       if @api_client.config.client_side_validation && order_id.nil?
@@ -50,6 +56,7 @@ module Noths
 
       # query parameters
       query_params = {}
+      query_params[:'token'] = token
 
       # header parameters
       header_params = {}
@@ -63,7 +70,7 @@ module Noths
 
       # http body (model)
       post_body = nil
-      auth_names = ['token']
+      auth_names = []
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
