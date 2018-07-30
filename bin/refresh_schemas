@@ -51,8 +51,13 @@ def apply_ammendments(api_schema)
   end
 
   api_schema.fetch(:models).values.each do |model|
-    model.fetch(:properties).values.each do |p|
-      p[:type] = p[:items][:'$ref'] if p[:type] == 'complex'
+    model.fetch(:properties).each do |name, property|
+      case property[:type]
+      when 'complex'
+        property[:type] = property[:items][:'$ref']
+      when 'date'
+        property[:type] = 'date-time'
+      end
     end
   end
 end

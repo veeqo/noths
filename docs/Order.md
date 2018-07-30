@@ -5,16 +5,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Integer** |  | 
 **state** | **String** |  | 
-**confirm_by** | **Date** |  | 
-**estimated_dispatch_at** | **Date** |  | 
-**placed_at** | **Date** |  | 
-**expired_at** | **Date** |  | 
-**declined_at** | **Date** |  | 
-**accepted_at** | **Date** |  | 
-**dispatched_at** | **Date** |  | 
-**archived_at** | **Date** |  | [optional] 
+**confirm_by** | **DateTime** |  | 
+**estimated_dispatch_at** | **DateTime** |  | 
+**placed_at** | **DateTime** |  | 
+**expired_at** | **DateTime** |  | 
+**declined_at** | **DateTime** |  | 
+**accepted_at** | **DateTime** |  | 
+**dispatched_at** | **DateTime** |  | 
+**archived_at** | **DateTime** |  | [optional] 
 **repeat_customer** | **BOOLEAN** |  | 
-**customer_expected_delivery_date** | **Date** |  | 
+**customer_expected_delivery_date** | **DateTime** |  | 
 **number** | **String** |  | 
 **dispatch_note_viewed** | **BOOLEAN** |  | 
 **express** | **BOOLEAN** |  | 
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **gift_receipt** | **BOOLEAN** |  | 
 **delivery_note** | **String** |  | 
 **has_enquiry** | **BOOLEAN** |  | 
-**estimated_delivery_date** | **Date** |  | 
+**estimated_delivery_date** | **DateTime** |  | 
 **rebate_qualified** | **BOOLEAN** | null in sites where rebates are not offered | [optional] 
 **rebate_achieved** | **BOOLEAN** | null in sites where rebates are not offered | [optional] 
 **financials** | [**Financials**](Financials.md) |  | 

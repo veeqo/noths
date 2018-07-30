@@ -1084,35 +1084,35 @@
           "description": null
         },
         "confirm_by": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "estimated_dispatch_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "placed_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "expired_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "declined_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "accepted_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "dispatched_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "archived_at": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "repeat_customer": {
@@ -1120,7 +1120,7 @@
           "description": null
         },
         "customer_expected_delivery_date": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "number": {
@@ -1184,7 +1184,7 @@
           "description": null
         },
         "estimated_delivery_date": {
-          "type": "date",
+          "type": "date-time",
           "description": null
         },
         "rebate_qualified": {
@@ -1992,12 +1992,12 @@
           "description": "Order Id"
         },
         "estimated_delivery_date": {
-          "type": "date",
+          "type": "date-time",
           "description": "'yyyy-mm-dd'",
           "required": "required"
         },
         "estimated_dispatch_at": {
-          "type": "date",
+          "type": "date-time",
           "description": "'yyyy-mm-dd'",
           "required": "required"
         },
@@ -2037,7 +2037,7 @@
           "description": "Order Id"
         },
         "estimated_delivery_date": {
-          "type": "date",
+          "type": "date-time",
           "description": "'yyyy-mm-dd'",
           "required": "required"
         },

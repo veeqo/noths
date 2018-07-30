@@ -31,8 +31,8 @@ module Noths
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'estimated_delivery_date' => :'Date',
-        :'estimated_dispatch_at' => :'Date',
+        :'estimated_delivery_date' => :'DateTime',
+        :'estimated_dispatch_at' => :'DateTime',
         :'confirmation_note' => :'String'
       }
     end

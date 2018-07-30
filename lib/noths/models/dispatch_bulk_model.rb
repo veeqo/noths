@@ -33,7 +33,7 @@ module Noths
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'estimated_delivery_date' => :'Date',
+        :'estimated_delivery_date' => :'DateTime',
         :'resolve_enquiry' => :'BOOLEAN',
         :'tracking_number' => :'String',
         :'parcel_tracking_url' => :'String'
