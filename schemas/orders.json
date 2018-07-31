@@ -1288,7 +1288,7 @@
           }
         },
         "items": {
-          "type": "Item",
+          "type": "array",
           "description": null,
           "items": {
             "$ref": "Item"
@@ -1474,7 +1474,7 @@
           }
         },
         "purchase_items": {
-          "type": "FinancialsDetails",
+          "type": "array",
           "description": null,
           "items": {
             "$ref": "FinancialsDetails"

@@ -80,7 +80,7 @@ module Noths
         :'manual_payment_total' => :'FinancialsDetails',
         :'purchase_delivery' => :'FinancialsDetails',
         :'purchase_discount' => :'FinancialsDetails',
-        :'purchase_items' => :'FinancialsDetails',
+        :'purchase_items' => :'Array<FinancialsDetails>',
         :'purchase_subtotal' => :'FinancialsDetails',
         :'purchase_total' => :'FinancialsDetails',
         :'partner_total' => :'FinancialsDetails',
@@ -143,7 +143,9 @@ module Noths
       end
 
       if attributes.has_key?(:'purchase_items')
-        self.purchase_items = attributes[:'purchase_items']
+        if (value = attributes[:'purchase_items']).is_a?(Array)
+          self.purchase_items = value
+        end
       end
 
       if attributes.has_key?(:'purchase_subtotal')

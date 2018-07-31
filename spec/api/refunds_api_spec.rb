@@ -15,6 +15,7 @@ describe 'RefundsApi' do
   # unit tests for refunds_create
   # Refund an order
   # Refunds all or part of an order
+  # @param token Authentication credential
   # @param order_id Order id
   # @param refund_reason Customer will see this message
   # @param cents 

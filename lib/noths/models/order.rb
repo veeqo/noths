@@ -199,7 +199,7 @@ module Noths
         :'order_total' => :'Money',
         :'delivery_total' => :'Money',
         :'enquiry' => :'Enquiry',
-        :'items' => :'Item',
+        :'items' => :'Array<Item>',
         :'links' => :'Array<Link>'
       }
     end
@@ -389,7 +389,9 @@ module Noths
       end
 
       if attributes.has_key?(:'items')
-        self.items = attributes[:'items']
+        if (value = attributes[:'items']).is_a?(Array)
+          self.items = value
+        end
       end
 
       if attributes.has_key?(:'links')

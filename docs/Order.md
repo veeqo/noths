@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **order_total** | [**Money**](Money.md) |  | 
 **delivery_total** | [**Money**](Money.md) |  | 
 **enquiry** | [**Enquiry**](Enquiry.md) |  | 
-**items** | [**Item**](Item.md) |  | 
+**items** | [**Array&lt;Item&gt;**](Item.md) |  | 
 **links** | [**Array&lt;Link&gt;**](Link.md) |  | 
 
 

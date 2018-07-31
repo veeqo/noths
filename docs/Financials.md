@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **manual_payment_total** | [**FinancialsDetails**](FinancialsDetails.md) |  | 
 **purchase_delivery** | [**FinancialsDetails**](FinancialsDetails.md) |  | 
 **purchase_discount** | [**FinancialsDetails**](FinancialsDetails.md) |  | 
-**purchase_items** | [**FinancialsDetails**](FinancialsDetails.md) |  | 
+**purchase_items** | [**Array&lt;FinancialsDetails&gt;**](FinancialsDetails.md) |  | 
 **purchase_subtotal** | [**FinancialsDetails**](FinancialsDetails.md) |  | 
 **purchase_total** | [**FinancialsDetails**](FinancialsDetails.md) |  | 
 **partner_total** | [**FinancialsDetails**](FinancialsDetails.md) |  | 

@@ -15,6 +15,7 @@ describe 'OrdersApi' do
   # unit tests for orders_acceptance
   # Accept an order
   #           Accept an order that is in the placed state.           Note: In rare instances orders may not transition to the &#39;accepted&#39; state           immediately. 
+  # @param token Authentication credential
   # @param id Order id
   # @param estimated_delivery_date &#39;yyyy-mm-dd&#39;
   # @param estimated_dispatch_at &#39;yyyy-mm-dd&#39;
@@ -28,6 +29,7 @@ describe 'OrdersApi' do
   # unit tests for orders_acceptance_bulk
   # Accept multiple orders
   # Returns an array of hashes containing order ids and status codes. A status code of 200 indicates that the order was eligible to be accepted and is expected to be processed successfully. This is not a guarantee that the order will be accepted. Processing acceptance is not instantaneous and may take some time while funds are captured.     Example response:     &lt;pre&gt;     [       {         \&quot;id\&quot;: 12,         \&quot;status\&quot;: 200,         \&quot;errors\&quot;: []       },       {         \&quot;id\&quot;: 22,         \&quot;status\&quot;: 404,         \&quot;errors\&quot;: [           {             \&quot;code\&quot;: \&quot;RESOURCE_NOT_FOUND\&quot;,             \&quot;title\&quot;: \&quot;Couldn&#39;t find the requested resource\&quot;           }         ]       }     ]     &lt;/pre&gt; 
+  # @param token Authentication credential
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @return [nil]
@@ -38,6 +40,7 @@ describe 'OrdersApi' do
   # unit tests for orders_decline
   # Decline an order
   # Declines an order that is in the placed state
+  # @param token Authentication credential
   # @param id Order id
   # @param decline_reason 
   # @param [Hash] opts the optional parameters
@@ -49,6 +52,7 @@ describe 'OrdersApi' do
   # unit tests for orders_decline_bulk
   # Decline multiple orders
   # Returns an array of hashes containing order ids and status codes. A status code of 200       indicates a successful update whereas a code of 400 indicates failure.     Example response:     &lt;pre&gt;     [       {         \&quot;id\&quot;: 12,         \&quot;status\&quot;: 200,         \&quot;errors\&quot;: []       },       {         \&quot;id\&quot;: 22,         \&quot;status\&quot;: 404,         \&quot;errors\&quot;: [           {             \&quot;code\&quot;: \&quot;RESOURCE_NOT_FOUND\&quot;,             \&quot;title\&quot;: \&quot;Couldn&#39;t find the requested resource\&quot;           }         ]       }     ]     &lt;/pre&gt; 
+  # @param token Authentication credential
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @return [nil]
@@ -59,6 +63,7 @@ describe 'OrdersApi' do
   # unit tests for orders_dispatch_note
   # Generate a dispatch note pdf or gift note pdf.
   # Force the kind of document by passing the force_type parameter. A gift note can only be printed for an order that is a gift, which will be the default behaviour.&lt;p/&gt;Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -XPOST [URL] &gt; document.pdf&lt;/pre&gt;
+  # @param token Authentication credential
   # @param id Order id
   # @param [Hash] opts the optional parameters
   # @option opts [String] :force_type Type of document
@@ -70,6 +75,7 @@ describe 'OrdersApi' do
   # unit tests for orders_dispatch_notes_bulk
   # Generate pdf with dispatch note for each order
   # &lt;p/&gt; Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -H \&quot;Content-Type: application/json\&quot; -d &#39;[{\&quot;id\&quot;: 123}, {\&quot;id\&quot;: 456}]&#39; -XPOST [URL] &gt; document.pdf&lt;/pre&gt;&lt;p/&gt;       Ensure that the Content-Type header is set to \&quot;Content-Type: application/json\&quot;.&lt;p/&gt;
+  # @param token Authentication credential
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @return [File]
@@ -80,6 +86,7 @@ describe 'OrdersApi' do
   # unit tests for orders_dispatch_order
   # Dispatch an order
   # Dispatches an order that is in an accepted state and has also had its dispatch note printed
+  # @param token Authentication credential
   # @param id Order id
   # @param estimated_delivery_date &#39;yyyy-mm-dd&#39;
   # @param [Hash] opts the optional parameters
@@ -95,6 +102,7 @@ describe 'OrdersApi' do
   # unit tests for orders_dispatch_orders_bulk
   # Dispatch multiple orders
   # Returns an array of hashes containing order ids and status codes. A status code of 200       indicates a successful update whereas a code of 400 indicates failure.     Example response:     &lt;pre&gt;     [       {         \&quot;id\&quot;: 12,         \&quot;status\&quot;: 200,         \&quot;errors\&quot;: []       },       {         \&quot;id\&quot;: 22,         \&quot;status\&quot;: 404,         \&quot;errors\&quot;: [           {             \&quot;code\&quot;: \&quot;RESOURCE_NOT_FOUND\&quot;,             \&quot;title\&quot;: \&quot;Couldn&#39;t find the requested resource\&quot;           }         ]       }     ]     &lt;/pre&gt; 
+  # @param token Authentication credential
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @option opts [BOOLEAN] :ignore_unresolved_enquiries Defaults to false
@@ -106,6 +114,7 @@ describe 'OrdersApi' do
   # unit tests for orders_index
   # Fetch orders
   # Lists orders descending by placed at time by default.&lt;p/&gt;If you just want a count, use per_page&#x3D;0 and offset&#x3D;0 .
+  # @param token Authentication credential
   # @param [Hash] opts the optional parameters
   # @option opts [DateTime] :customer_expected_delivery_date_from Earliest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39;
   # @option opts [DateTime] :customer_expected_delivery_date_to Latest customer_expected_delivery_date datetime - format iso8601 eg &#39;2011-10-05T22:26:12-04:00&#39;
@@ -138,6 +147,7 @@ describe 'OrdersApi' do
   # unit tests for orders_invoice
   # Generate a vat invoice pdf.
   # &lt;p&gt;Invoices are currently only applicable for the UK site&lt;/p&gt;Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -XPOST [URL] &gt; document.pdf&lt;/pre&gt;
+  # @param token Authentication credential
   # @param id Order id
   # @param type Type of invoice
   # @param [Hash] opts the optional parameters
@@ -149,6 +159,7 @@ describe 'OrdersApi' do
   # unit tests for orders_order_details
   # Generate an order details pdf
   # Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -XPOST [URL] &gt; document.pdf&lt;/pre&gt;
+  # @param token Authentication credential
   # @param id Order id
   # @param [Hash] opts the optional parameters
   # @return [File]
@@ -159,6 +170,7 @@ describe 'OrdersApi' do
   # unit tests for orders_order_details_bulk
   # Generate pdf with order details for each order
   # &lt;p/&gt; Here is an example of how to obtain a pdf using curl:       &lt;pre&gt;curl -H \&quot;Content-Type: application/json\&quot; -d &#39;[{\&quot;id\&quot;: 123}, {\&quot;id\&quot;: 456}]&#39; -XPOST [URL] &gt; document.pdf&lt;/pre&gt;&lt;p/&gt;       Ensure that the Content-Type header is set to \&quot;Content-Type: application/json\&quot;.&lt;p/&gt;
+  # @param token Authentication credential
   # @param payload 
   # @param [Hash] opts the optional parameters
   # @return [File]
@@ -169,6 +181,7 @@ describe 'OrdersApi' do
   # unit tests for orders_show
   # Fetch a single Order
   # 
+  # @param token Authentication credential
   # @param id Order Id
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include         Comma separated list of nodes to expand. Currently the available values are:         &lt;br /&gt;&lt;b style&#x3D;\&quot;margin-left: 10px\&quot;&gt;financials&lt;/b&gt;         &lt;p style&#x3D;\&quot;margin-left: 20px\&quot;&gt;           Additional financial data about this order, eg: commission and discount amounts.         &lt;/p&gt; 
