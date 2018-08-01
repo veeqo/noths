@@ -138,7 +138,7 @@ describe 'OrdersApi' do
   # @option opts [String] :query Matches your query to information related to your orders
   # @option opts [BOOLEAN] :repeat_customer 
   # @option opts [String] :sort Defaults to placed_at
-  # @option opts [String] :state State
+  # @option opts [Array<String>] :state State
   # @return [OrderIndex]
   describe 'orders_index test' do
     it 'should work'

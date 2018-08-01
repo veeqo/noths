@@ -486,7 +486,7 @@ opts = {
   query: "query_example", # String | Matches your query to information related to your orders
   repeat_customer: true, # BOOLEAN | 
   sort: "sort_example", # String | Defaults to placed_at
-  state: "state_example" # String | State
+  state: ["state_example"] # Array<String> | State
 }
 
 begin
@@ -525,7 +525,7 @@ Name | Type | Description  | Notes
  **query** | **String**| Matches your query to information related to your orders | [optional] 
  **repeat_customer** | **BOOLEAN**|  | [optional] 
  **sort** | **String**| Defaults to placed_at | [optional] 
- **state** | **String**| State | [optional] 
+ **state** | [**Array&lt;String&gt;**](String.md)| State | [optional] 
 
 ### Return type
 

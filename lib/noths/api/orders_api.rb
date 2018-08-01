@@ -564,7 +564,7 @@ module Noths
     # @option opts [String] :query Matches your query to information related to your orders
     # @option opts [BOOLEAN] :repeat_customer 
     # @option opts [String] :sort Defaults to placed_at
-    # @option opts [String] :state State
+    # @option opts [Array<String>] :state State
     # @return [OrderIndex]
     def orders_index(token, opts = {})
       data, _status_code, _headers = orders_index_with_http_info(token, opts)
@@ -597,7 +597,7 @@ module Noths
     # @option opts [String] :query Matches your query to information related to your orders
     # @option opts [BOOLEAN] :repeat_customer 
     # @option opts [String] :sort Defaults to placed_at
-    # @option opts [String] :state State
+    # @option opts [Array<String>] :state State
     # @return [Array<(OrderIndex, Fixnum, Hash)>] OrderIndex data, response status code and response headers
     def orders_index_with_http_info(token, opts = {})
       if @api_client.config.debugging
@@ -618,9 +618,6 @@ module Noths
       end
       if @api_client.config.client_side_validation && opts[:'sort'] && !['accepted_at', 'confirm_by', 'customer_email', 'customer_expected_delivery_date', 'customer_name', 'declined_at', 'delivery_recipient_name', 'delivery_service_code', 'dispatch_note_viewed', 'dispatched_at', 'enquiry_state', 'estimated_delivery_date', 'estimated_dispatch_at', 'expired_at', 'gift', 'international', 'listing_total_gross_value', 'partner_name', 'partner_shortcode', 'placed_at', 'state'].include?(opts[:'sort'])
         fail ArgumentError, 'invalid value for "sort", must be one of accepted_at, confirm_by, customer_email, customer_expected_delivery_date, customer_name, declined_at, delivery_recipient_name, delivery_service_code, dispatch_note_viewed, dispatched_at, enquiry_state, estimated_delivery_date, estimated_dispatch_at, expired_at, gift, international, listing_total_gross_value, partner_name, partner_shortcode, placed_at, state'
-      end
-      if @api_client.config.client_side_validation && opts[:'state'] && !['placed', 'expired', 'accepted', 'declined', 'dispatched', 'refunded', 'archived'].include?(opts[:'state'])
-        fail ArgumentError, 'invalid value for "state", must be one of placed, expired, accepted, declined, dispatched, refunded, archived'
       end
       # resource path
       local_var_path = "/api/v1/orders"
@@ -650,7 +647,7 @@ module Noths
       query_params[:'query'] = opts[:'query'] if !opts[:'query'].nil?
       query_params[:'repeat_customer'] = opts[:'repeat_customer'] if !opts[:'repeat_customer'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
-      query_params[:'state'] = opts[:'state'] if !opts[:'state'].nil?
+      query_params[:'state'] = @api_client.build_collection_param(opts[:'state'], :csv) if !opts[:'state'].nil?
 
       # header parameters
       header_params = {}

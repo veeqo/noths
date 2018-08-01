@@ -39,6 +39,7 @@ def apply_ammendments(api_schema)
         end
 
         p[:name] = :payload if p[:paramType] == 'body' && p[:name] == ''
+        p[:'allowMultiple'] = true if p[:name] == 'state' # actually API allows multiple states in query
       end
 
       method[:responseMessages].each do |response_message|

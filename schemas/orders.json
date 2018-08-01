@@ -948,7 +948,8 @@
                   "refunded",
                   "archived"
                 ]
-              }
+              },
+              "allowMultiple": true
             }
           ],
           "summary": "Fetch orders",
