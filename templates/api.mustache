@@ -119,7 +119,7 @@ module {{moduleName}}
       {{/queryParams}}
       {{#queryParams}}
       {{^required}}
-      query_params[:'{{{baseName}}}'] = {{#collectionFormat}}@api_client.build_collection_param(opts[:'{{{paramName}}}'], :{{{collectionFormat}}}){{/collectionFormat}}{{^collectionFormat}}opts[:'{{{paramName}}}']{{/collectionFormat}} if !opts[:'{{{paramName}}}'].nil?
+      query_params[:'{{{baseName}}}'] = normalize({{#collectionFormat}}@api_client.build_collection_param(opts[:'{{{paramName}}}'], :{{{collectionFormat}}}){{/collectionFormat}}{{^collectionFormat}}opts[:'{{{paramName}}}']{{/collectionFormat}}) if !opts[:'{{{paramName}}}'].nil?
       {{/required}}
       {{/queryParams}}
 
@@ -178,6 +178,17 @@ module {{moduleName}}
       return data, status_code, headers
     end
 {{/operation}}
+
+    private
+
+    def normalize(param)
+      case param
+      when Date, DateTime, Time
+        param.to_s(:iso8601)
+      else
+        param
+      end
+    end
   end
 {{/operations}}
 end

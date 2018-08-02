@@ -310,7 +310,7 @@ module Noths
       # query parameters
       query_params = {}
       query_params[:'token'] = token
-      query_params[:'force_type'] = opts[:'force_type'] if !opts[:'force_type'].nil?
+      query_params[:'force_type'] = normalize(opts[:'force_type']) if !opts[:'force_type'].nil?
 
       # header parameters
       header_params = {}
@@ -513,7 +513,7 @@ module Noths
       # query parameters
       query_params = {}
       query_params[:'token'] = token
-      query_params[:'ignore_unresolved_enquiries'] = opts[:'ignore_unresolved_enquiries'] if !opts[:'ignore_unresolved_enquiries'].nil?
+      query_params[:'ignore_unresolved_enquiries'] = normalize(opts[:'ignore_unresolved_enquiries']) if !opts[:'ignore_unresolved_enquiries'].nil?
 
       # header parameters
       header_params = {}
@@ -625,29 +625,29 @@ module Noths
       # query parameters
       query_params = {}
       query_params[:'token'] = token
-      query_params[:'customer_expected_delivery_date[from]'] = opts[:'customer_expected_delivery_date_from'] if !opts[:'customer_expected_delivery_date_from'].nil?
-      query_params[:'customer_expected_delivery_date[to]'] = opts[:'customer_expected_delivery_date_to'] if !opts[:'customer_expected_delivery_date_to'].nil?
-      query_params[:'delivery_service_code'] = opts[:'delivery_service_code'] if !opts[:'delivery_service_code'].nil?
-      query_params[:'delivery_zone_ids'] = opts[:'delivery_zone_ids'] if !opts[:'delivery_zone_ids'].nil?
-      query_params[:'dir'] = opts[:'dir'] if !opts[:'dir'].nil?
-      query_params[:'dispatch_note_viewed'] = opts[:'dispatch_note_viewed'] if !opts[:'dispatch_note_viewed'].nil?
-      query_params[:'enquiry_state'] = opts[:'enquiry_state'] if !opts[:'enquiry_state'].nil?
-      query_params[:'estimated_delivery_date[from]'] = opts[:'estimated_delivery_date_from'] if !opts[:'estimated_delivery_date_from'].nil?
-      query_params[:'estimated_delivery_date[to]'] = opts[:'estimated_delivery_date_to'] if !opts[:'estimated_delivery_date_to'].nil?
-      query_params[:'estimated_dispatch_at[from]'] = opts[:'estimated_dispatch_at_from'] if !opts[:'estimated_dispatch_at_from'].nil?
-      query_params[:'estimated_dispatch_at[to]'] = opts[:'estimated_dispatch_at_to'] if !opts[:'estimated_dispatch_at_to'].nil?
-      query_params[:'updated_at[from]'] = opts[:'updated_at_from'] if !opts[:'updated_at_from'].nil?
-      query_params[:'updated_at[to]'] = opts[:'updated_at_to'] if !opts[:'updated_at_to'].nil?
-      query_params[:'gift'] = opts[:'gift'] if !opts[:'gift'].nil?
-      query_params[:'unresolved_enquiry'] = opts[:'unresolved_enquiry'] if !opts[:'unresolved_enquiry'].nil?
-      query_params[:'ids'] = opts[:'ids'] if !opts[:'ids'].nil?
-      query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
-      query_params[:'per_page'] = opts[:'per_page'] if !opts[:'per_page'].nil?
-      query_params[:'product_ids'] = opts[:'product_ids'] if !opts[:'product_ids'].nil?
-      query_params[:'query'] = opts[:'query'] if !opts[:'query'].nil?
-      query_params[:'repeat_customer'] = opts[:'repeat_customer'] if !opts[:'repeat_customer'].nil?
-      query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
-      query_params[:'state'] = @api_client.build_collection_param(opts[:'state'], :csv) if !opts[:'state'].nil?
+      query_params[:'customer_expected_delivery_date[from]'] = normalize(opts[:'customer_expected_delivery_date_from']) if !opts[:'customer_expected_delivery_date_from'].nil?
+      query_params[:'customer_expected_delivery_date[to]'] = normalize(opts[:'customer_expected_delivery_date_to']) if !opts[:'customer_expected_delivery_date_to'].nil?
+      query_params[:'delivery_service_code'] = normalize(opts[:'delivery_service_code']) if !opts[:'delivery_service_code'].nil?
+      query_params[:'delivery_zone_ids'] = normalize(opts[:'delivery_zone_ids']) if !opts[:'delivery_zone_ids'].nil?
+      query_params[:'dir'] = normalize(opts[:'dir']) if !opts[:'dir'].nil?
+      query_params[:'dispatch_note_viewed'] = normalize(opts[:'dispatch_note_viewed']) if !opts[:'dispatch_note_viewed'].nil?
+      query_params[:'enquiry_state'] = normalize(opts[:'enquiry_state']) if !opts[:'enquiry_state'].nil?
+      query_params[:'estimated_delivery_date[from]'] = normalize(opts[:'estimated_delivery_date_from']) if !opts[:'estimated_delivery_date_from'].nil?
+      query_params[:'estimated_delivery_date[to]'] = normalize(opts[:'estimated_delivery_date_to']) if !opts[:'estimated_delivery_date_to'].nil?
+      query_params[:'estimated_dispatch_at[from]'] = normalize(opts[:'estimated_dispatch_at_from']) if !opts[:'estimated_dispatch_at_from'].nil?
+      query_params[:'estimated_dispatch_at[to]'] = normalize(opts[:'estimated_dispatch_at_to']) if !opts[:'estimated_dispatch_at_to'].nil?
+      query_params[:'updated_at[from]'] = normalize(opts[:'updated_at_from']) if !opts[:'updated_at_from'].nil?
+      query_params[:'updated_at[to]'] = normalize(opts[:'updated_at_to']) if !opts[:'updated_at_to'].nil?
+      query_params[:'gift'] = normalize(opts[:'gift']) if !opts[:'gift'].nil?
+      query_params[:'unresolved_enquiry'] = normalize(opts[:'unresolved_enquiry']) if !opts[:'unresolved_enquiry'].nil?
+      query_params[:'ids'] = normalize(opts[:'ids']) if !opts[:'ids'].nil?
+      query_params[:'offset'] = normalize(opts[:'offset']) if !opts[:'offset'].nil?
+      query_params[:'per_page'] = normalize(opts[:'per_page']) if !opts[:'per_page'].nil?
+      query_params[:'product_ids'] = normalize(opts[:'product_ids']) if !opts[:'product_ids'].nil?
+      query_params[:'query'] = normalize(opts[:'query']) if !opts[:'query'].nil?
+      query_params[:'repeat_customer'] = normalize(opts[:'repeat_customer']) if !opts[:'repeat_customer'].nil?
+      query_params[:'sort'] = normalize(opts[:'sort']) if !opts[:'sort'].nil?
+      query_params[:'state'] = normalize(@api_client.build_collection_param(opts[:'state'], :csv)) if !opts[:'state'].nil?
 
       # header parameters
       header_params = {}
@@ -901,7 +901,7 @@ module Noths
       # query parameters
       query_params = {}
       query_params[:'token'] = token
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+      query_params[:'include'] = normalize(opts[:'include']) if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -923,6 +923,17 @@ module Noths
         @api_client.config.logger.debug "API called: OrdersApi#orders_show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
+    end
+
+    private
+
+    def normalize(param)
+      case param
+      when Date, DateTime, Time
+        param.to_s(:iso8601)
+      else
+        param
+      end
     end
   end
 end

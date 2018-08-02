@@ -83,5 +83,16 @@ module Noths
       end
       return data, status_code, headers
     end
+
+    private
+
+    def normalize(param)
+      case param
+      when Date, DateTime, Time
+        param.to_s(:iso8601)
+      else
+        param
+      end
+    end
   end
 end
