@@ -49,5 +49,6 @@ Name | Type | Description | Notes
 **enquiry** | [**Enquiry**](Enquiry.md) |  | 
 **items** | [**Array&lt;Item&gt;**](Item.md) |  | 
 **links** | [**Array&lt;Link&gt;**](Link.md) |  | 
+**updated_at** | **DateTime** |  | [optional] 
 
 

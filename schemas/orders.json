@@ -1301,6 +1301,10 @@
           "items": {
             "$ref": "Link"
           }
+        },
+        "updated_at": {
+          "type": "date-time",
+          "description": null
         }
       }
     },

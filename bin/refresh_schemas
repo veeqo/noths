@@ -53,6 +53,10 @@ def apply_ammendments(api_schema)
 
 
   api_schema.fetch(:models).values.each do |model|
+    if model.fetch(:id) == 'Order'
+      model.fetch(:properties)['updated_at'] ||= {:type=>"date-time", :description=>nil}
+    end
+
     model.fetch(:properties).each do |name, property|
       case property[:type]
       when 'complex'

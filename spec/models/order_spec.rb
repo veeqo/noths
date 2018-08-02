@@ -193,5 +193,9 @@ describe 'Order' do
     it 'should work'
   end
 
+  describe 'test attribute "updated_at"' do
+    it 'should work'
+  end
+
 end
 

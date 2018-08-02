@@ -99,6 +99,8 @@ module Noths
 
     attr_accessor :links
 
+    attr_accessor :updated_at
+
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -148,7 +150,8 @@ module Noths
         :'delivery_total' => :'delivery_total',
         :'enquiry' => :'enquiry',
         :'items' => :'items',
-        :'links' => :'links'
+        :'links' => :'links',
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -200,7 +203,8 @@ module Noths
         :'delivery_total' => :'Money',
         :'enquiry' => :'Enquiry',
         :'items' => :'Array<Item>',
-        :'links' => :'Array<Link>'
+        :'links' => :'Array<Link>',
+        :'updated_at' => :'DateTime'
       }
     end
 
@@ -398,6 +402,10 @@ module Noths
         if (value = attributes[:'links']).is_a?(Array)
           self.links = value
         end
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
 
     end
@@ -680,7 +688,8 @@ module Noths
           delivery_total == o.delivery_total &&
           enquiry == o.enquiry &&
           items == o.items &&
-          links == o.links
+          links == o.links &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -692,7 +701,7 @@ module Noths
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, state, confirm_by, estimated_dispatch_at, placed_at, expired_at, declined_at, accepted_at, dispatched_at, archived_at, repeat_customer, customer_expected_delivery_date, number, dispatch_note_viewed, express, partner_name, delivery_recipient_name, delivery_recipient_first_name, delivery_recipient_last_name, international, dispatch_overdue, gift, gift_message, gift_wrap, gift_receipt, delivery_note, has_enquiry, estimated_delivery_date, rebate_qualified, rebate_achieved, financials, promotion_discount, promotion_present, remaining_refund_amount, refund_total, extra_refund_amount, user, delivery_address, delivery_zone, delivery_service, order_detail, order_total, delivery_total, enquiry, items, links].hash
+      [id, state, confirm_by, estimated_dispatch_at, placed_at, expired_at, declined_at, accepted_at, dispatched_at, archived_at, repeat_customer, customer_expected_delivery_date, number, dispatch_note_viewed, express, partner_name, delivery_recipient_name, delivery_recipient_first_name, delivery_recipient_last_name, international, dispatch_overdue, gift, gift_message, gift_wrap, gift_receipt, delivery_note, has_enquiry, estimated_delivery_date, rebate_qualified, rebate_achieved, financials, promotion_discount, promotion_present, remaining_refund_amount, refund_total, extra_refund_amount, user, delivery_address, delivery_zone, delivery_service, order_detail, order_total, delivery_total, enquiry, items, links, updated_at].hash
     end
 
     # Builds the object from hash
