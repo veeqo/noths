@@ -784,7 +784,6 @@ module Noths
       hash = {}
       self.class.attribute_map.each_pair do |attr, param|
         value = self.send(attr)
-        next if value.nil?
         hash[param] = _to_hash(value)
       end
       hash
