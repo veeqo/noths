@@ -165,7 +165,7 @@ module Noths
 
     def base_url
       url = "#{scheme}://#{[host, base_path].join('/').gsub(/\/+/, '/')}".sub(/\/+\z/, '')
-      URI.encode(url)
+      URI::DEFAULT_PARSER.escape(url)
     end
 
     # Gets API key (with prefix if set).
